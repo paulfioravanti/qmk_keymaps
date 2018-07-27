@@ -18,20 +18,16 @@ brew install gcc-arm-none-eabi
 brew install avrdude
 ```
 
-In order to install compiled firmware on to the ErgoDox, install the
-[Teensy Loader for Mac OS][]:
-
-```sh
-brew cask install teensy
-```
-
-## Compile
+## Install
 
 ```sh
 git clone git@github.com:qmk/qmk_firmware.git
-cd qmk_firmware
-make <keyboard-name>:paulfioravanti
+git clone git@github.com:paulfioravanti/qmk_firmware_keymaps.git
 ```
+
+Then, copy the relevant keymap folder from the `qmk_firmware_keymaps` directory
+into the `qmk_firmware` directory, and compile the firmware. Details about
+compilation/setup are on the `README` page for the specific keymap.
 
 ## Handy Links
 

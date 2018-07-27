@@ -6,15 +6,25 @@ all further layout tinkering will happen here.
 This keymap started out with the [QMK ErgoDox EZ default keymap][], and I
 further customised it from there.
 
-## Compile
+## Dependencies
 
-Assuming that
+In order to install compiled firmware on to the ErgoDox, install the
+[Teensy Loader for Mac OS][]:
 
 ```sh
-git clone git@github.com:qmk/qmk_firmware.git
+brew cask install teensy
+```
+
+## Compile
+
+```sh
+cp qmk_firmware_keymaps/keyboards/ergodox_ez/keymaps/paulfioravanti qmk_firmware/keyboards/ergodox_ez/keymaps
 cd qmk_firmware
 make ergodox_ez:paulfioravanti
 ```
+
+This should result in an `ergodox_ez_paulfioravanti.hex` file being generated
+in the `qmk_firmware` root directory.
 
 ## Flash Firmware
 
