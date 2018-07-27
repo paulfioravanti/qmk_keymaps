@@ -41,4 +41,3 @@ compilation/setup are on the `README` page for the specific keymap.
 [QMK Customizing Functionality]: https://docs.qmk.fm/#/custom_quantum_functions
 [QMK Firmware]: https://qmk.fm/
 [QMK Keycodes]: https://docs.qmk.fm/#/keycodes
-[Teensy Loader for Mac OS]: https://pjrc.com/teensy/loader_mac.html

@@ -34,3 +34,4 @@ Follow instructions (and watch video) on the
 [ErgoDox EZ Graphical Configurator page]: https://ergodox-ez.com/pages/graphical-configurator
 [my original ErgoDox Firmware configuration]: https://github.com/paulfioravanti/ergodox-firmware/blob/custom-layout/firmware/keyboard/ergodox/layout/custom-layout.c
 [QMK ErgoDox EZ default keymap]: https://github.com/qmk/qmk_firmware/blob/master/keyboards/ergodox_ez/keymaps/default/keymap.c
+[Teensy Loader for Mac OS]: https://pjrc.com/teensy/loader_mac.html
