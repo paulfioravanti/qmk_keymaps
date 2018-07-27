@@ -18,7 +18,7 @@ brew cask install teensy
 ## Compile
 
 ```sh
-cp qmk_firmware_keymaps/keyboards/ergodox_ez/keymaps/paulfioravanti qmk_firmware/keyboards/ergodox_ez/keymaps
+cp -r qmk_firmware_keymaps/keyboards/ergodox_ez/keymaps/paulfioravanti qmk_firmware/keyboards/ergodox_ez/keymaps
 cd qmk_firmware
 make ergodox_ez:paulfioravanti
 ```
