@@ -1,7 +1,6 @@
-# QMK Firmware Keymaps
+# QMK Keymaps
 
-Custom firmware keymaps I have made for mechanical keyboards running
-[QMK Firmware][].
+Custom keymaps I have made for mechanical keyboards running [QMK Firmware][].
 
 ## Dependencies
 
@@ -22,10 +21,10 @@ brew install avrdude
 
 ```sh
 git clone git@github.com:qmk/qmk_firmware.git
-git clone git@github.com:paulfioravanti/qmk_firmware_keymaps.git
+git clone git@github.com:paulfioravanti/qmk_keymaps.git
 ```
 
-Then, copy the relevant keymap folder from the `qmk_firmware_keymaps` directory
+Then, copy the relevant keymap folder from the `qmk_keymaps` directory
 into the `qmk_firmware` directory, and compile the firmware. Details about
 compilation/setup are on the `README` page for the specific keymap.
 
