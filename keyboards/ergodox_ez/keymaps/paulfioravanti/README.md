@@ -31,7 +31,16 @@ in the `qmk_firmware` root directory.
 Follow instructions (and watch video) on the
 [ErgoDox EZ Graphical Configurator page][].
 
+### N-key Rollover
+
+To toggle [n-key rollover][] (NKRO), press LShift+RShift+N. If you want to have
+NKRO enabled by default, add `#define FORCE_NKRO` to the `config.h` file
+([source][NKRO doesn't work with ergodox ez]).
+
+
 [ErgoDox EZ Graphical Configurator page]: https://ergodox-ez.com/pages/graphical-configurator
 [my original ErgoDox Firmware configuration]: https://github.com/paulfioravanti/ergodox-firmware/blob/custom-layout/firmware/keyboard/ergodox/layout/custom-layout.c
+[n-key rollover]: https://en.wikipedia.org/wiki/Rollover_(key)#n-key_rollover
+[NKRO doesn't work with ergodox ez]: https://github.com/qmk/qmk_firmware/issues/1695
 [QMK ErgoDox EZ default keymap]: https://github.com/qmk/qmk_firmware/blob/master/keyboards/ergodox_ez/keymaps/default/keymap.c
 [Teensy Loader for Mac OS]: https://pjrc.com/teensy/loader_mac.html
