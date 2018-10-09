@@ -24,3 +24,7 @@
 // Default: 200
 #undef TAPPING_TERM
 #define TAPPING_TERM 50
+
+// Keep N-key rollover (NKRO) on by default
+// https://en.wikipedia.org/wiki/Rollover_(key)#n-key_rollover
+#define FORCE_NKRO

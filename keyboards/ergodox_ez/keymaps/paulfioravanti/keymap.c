@@ -6,8 +6,10 @@
 #define BASE 0 // default layer
 #define CODER 1 // coder layer
 #define MEDIA 2 // media keys
-#define STEGO 3 // qwerty layer for stego
+#define PLVR 3 // steno layer for Plover
+#define TXBOLT 4 // TxBolt Steno Virtual Serial
 
+// Helpers to make keymaps a bit easier to read at a glance
 #define ___ KC_TRNS
 #define _x_ KC_NO
 
@@ -56,7 +58,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Qwerty layer
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  |STEGO |  |  =   |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
+ * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  | PLVR |  |  =   |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
  * |  Tab   |   Q  |   W  |   E  |   R  |   T  | MO   |  | MO   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
  * |--------+------+------+------+------+------| MEDIA|  | MEDIA|------+------+------+------+------+--------|
@@ -76,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TO(STEGO),
+  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TG(PLVR),
   KC_TAB,         KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,      MO(MEDIA),
   LCTL_T(KC_ESC), KC_A,         KC_S,     KC_D,           KC_F,           KC_G,
   KC_LSHIFT,      KC_Z,         KC_X,     KC_C,           KC_V,           KC_B,      MO(CODER),
@@ -177,48 +179,116 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ___,
   ___, KC_BTN2, KC_BTN1
 ),
-/* Keymap 3: Default QWERTY, currently used for Steganography
+/* Keymap 3: Modified QWERTY for Plover Stego
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |   =    |   1  |   2  |   3  |   4  |   5  | BASE |  | RIGHT|   6  |   7  |   8  |   9  |   0  |   -    |
+ * |        |      |      |      |      |      | BASE |  |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * | Del    |   Q  |   W  |   E  |   R  |   T  |MO    |  |MO    |   Y  |   U  |   I  |   O  |   P  |   \    |
- * |--------+------+------+------+------+------|CODER |  |CODER |------+------+------+------+------+--------|
- * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|  |------|   H  |   J  |   K  |   L  |  ;   |   '    |
+ * |        |   1  |   2  |   3  |   4  |   5  |MO    |  |MO    |   6  |   7  |   8  |   9  |  0   |        |
+ * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
+ * |        |   Q  |   W  |   E  |   R  |   T  |------|  |------|   Y  |   U  |   I  |   O  |  P   |   [    |
  * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
- * | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |MEDIA |  |MEDIA |   N  |   M  |   ,  |   .  |  /   | RShift |
+ * |        |   A  |   S  |   D  |   F  |   G  |CODER |  |CODER |   H  |   J  |   K  |   L  |  ;   |   '    |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   | Grv  |  '"  |AltShf| Left | Right|                              |  Up  | Down |   [  |   ]  | ~L1  |
+ *   |      |      |      |      |      |                              |      |      |      |      |      |
  *   `----------------------------------'                              `----------------------------------'
- *                                      ,-------------.  ,---------------.
- *                                      | App  | LGui |  | Alt  |Ctrl/Esc|
- *                               ,------|------|------|  |------+--------+------.
- *                               |      |      | Home |  | PgUp |        |      |
- *                               | Space|Backsp|------|  |------|  Tab   |Enter |
- *                               |      |ace   | End  |  | PgDn |        |      |
- *                               `--------------------'  `----------------------'
+ *                                      ,-------------.  ,-------------.
+ *                                      |      |      |  |      |      |
+ *                               ,------|------|------|  |------+------+------.
+ *                               |      |      |      |  |      |      |      |
+ *                               |  C   |   V  |------|  |------|  N   |  M   |
+ *                               |      |      |      |  |      |      |      |
+ *                               `--------------------'  `--------------------'
  */
-// If it accepts an argument (i.e, is a function), it doesn't need KC_.
-// Otherwise, it needs KC_*
-[STEGO] = LAYOUT_ergodox(  // layer 3 : QWERTY
+[PLVR] = LAYOUT_ergodox(  // layer 3 : PLVR
   // left hand
-  KC_EQL,  KC_1,        KC_2,          KC_3,    KC_4,    KC_5,          TG(BASE),
-  KC_DELT, KC_Q,        KC_W,          KC_E,    KC_R,    KC_T,          MO(MEDIA),
-  KC_BSPC, KC_A,        KC_S,          KC_D,    KC_F,    KC_G,
-  KC_LSFT, CTL_T(KC_Z), KC_X,          KC_C,    KC_V,    KC_B,          MO(CODER),
-  KC_GRV,  KC_QUOT,     LALT(KC_LSFT), KC_LEFT, KC_RGHT,
-                                                         ALT_T(KC_APP), KC_LGUI,
-                                                                        KC_HOME,
-                                                KC_SPC,  KC_BSPC,       KC_END,
+  _x_,  _x_, _x_,  _x_,  _x_,  _x_,  TG(PLVR),
+  _x_, KC_1, KC_2, KC_3, KC_4, KC_5, MO(MEDIA),
+  _x_, KC_Q, KC_W, KC_E, KC_R, KC_T,
+  _x_, KC_A, KC_S, KC_D, KC_F, KC_G, MO(CODER),
+  _x_, _x_,  _x_,  _x_,  _x_,
+                               _x_,  _x_,
+                                     _x_,
+                         KC_C, KC_V, _x_,
   // right hand
-  KC_RGHT,   KC_6,   KC_7,  KC_8,    KC_9,    KC_0,    KC_MINS,
-  MO(MEDIA), KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
-             KC_H,   KC_J,  KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-  MO(CODER), KC_N,   KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                     KC_UP, KC_DOWN, KC_LBRC, KC_RBRC, KC_FN1,
-  KC_LALT,   CTL_T(KC_ESC),
-  KC_PGUP,
-  KC_PGDN,   KC_TAB, KC_ENT
+  _x_,       _x_,  _x_,  _x_,  _x_,  _x_,     _x_,
+  MO(MEDIA), KC_6, KC_7, KC_8, KC_9, KC_0,    _x_,
+             KC_Y, KC_U, KC_I, KC_O, KC_P,    KC_LBRC,
+  MO(CODER), KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+                   _x_,  _x_,  _x_,  _x_,     _x_,
+  _x_,       _x_,
+  _x_,
+  _x_,       KC_N, KC_M
+),
+// TxBolt Codes
+#define Sl 0b00000001
+#define Tl 0b00000010
+#define Kl 0b00000100
+#define Pl 0b00001000
+#define Wl 0b00010000
+#define Hl 0b00100000
+#define Rl 0b01000001
+#define Al 0b01000010
+#define Ol 0b01000100
+#define X  0b01001000
+#define Er 0b01010000
+#define Ur 0b01100000
+#define Fr 0b10000001
+#define Rr 0b10000010
+#define Pr 0b10000100
+#define Br 0b10001000
+#define Lr 0b10010000
+#define Gr 0b10100000
+#define Tr 0b11000001
+#define Sr 0b11000010
+#define Dr 0b11000100
+#define Zr 0b11001000
+#define NM 0b11010000
+#define GRPMASK 0b11000000
+#define GRP0 0b00000000
+#define GRP1 0b01000000
+#define GRP2 0b10000000
+#define GRP3 0b11000000
+/* Keymap 4: TxBolt (Serial) for Stego
+ *
+ * ,--------------------------------------------------.  ,--------------------------------------------------.
+ * | BKSPC  |      |      |      |      |      | BASE |  |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
+ * |        |   #  |   #  |   #  |   #  |   #  |MO    |  |MO    |   #  |   #  |   #  |   #  |  #   |   #    |
+ * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
+ * |        |   S  |   T  |   P  |   H  |   *  |------|  |------|   *  |   F  |   P  |   L  |  T   |   D    |
+ * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
+ * |        |   S  |   K  |   W  |   R  |   *  |CODER |  |CODER |   *  |   R  |   B  |   G  |  S   |   Z    |
+ * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                              |      |      |      |      |      |
+ *   `----------------------------------'                              `----------------------------------'
+ *                                      ,-------------.  ,-------------.
+ *                                      |      |      |  |      |      |
+ *                               ,------|------|------|  |------+------+------.
+ *                               |      |      |      |  |      |      |      |
+ *                               |  A   |   O  |------|  |------|  E   |  U   |
+ *                               |      |      |      |  |      |      |      |
+ *                               `--------------------'  `--------------------'
+ */
+[TXBOLT] = LAYOUT_ergodox(  // layer 4 : TXBOLT
+  // left hand
+  KC_BSPC, _x_,   _x_,   _x_,   _x_,   _x_,   TG(BASE),
+  _x_,     M(NM), M(NM), M(NM), M(NM), M(NM), MO(MEDIA),
+  _x_,     M(Sl), M(Tl), M(Pl), M(Hl), M(X),
+  _x_,     M(Sl), M(Kl), M(Wl), M(Rl), M(X),  MO(CODER),
+  _x_,     _x_,   _x_,   _x_,   _x_,
+                                       _x_,   _x_,
+                                              _x_,
+                                M(Al), M(Ol), _x_,
+  // right hand
+  _x_,       _x_,   _x_,   _x_,   _x_,   _x_,   _x_,
+  MO(MEDIA), M(NM), M(NM), M(NM), M(NM), M(NM), _x_,
+             M(X),  M(Fr), M(Pr), M(Lr), M(Tr), M(Dr),
+  MO(CODER), M(X),  M(Rr), M(Br), M(Gr), M(Sr), M(Zr),
+                    _x_,   _x_,   _x_,   _x_,   _x_,
+  _x_,       _x_,
+  _x_,
+  _x_,       M(Er), M(Ur)
 )
 };
 
