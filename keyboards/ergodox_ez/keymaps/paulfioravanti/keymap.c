@@ -11,7 +11,7 @@
 #define CODER 1 // coder layer
 #define MEDIA 2 // media keys
 #define PLVR 3 // steno layer for Plover
-#define TXBOLT 4 // TxBolt Steno Virtual Serial
+#define STEN 4 // Steno Virtual Serial
 
 // Helpers to make keymaps a bit easier to read at a glance
 #define ___ KC_TRNS
@@ -62,7 +62,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Qwerty layer
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  | PLVR |  |  =   |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
+ * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  | STEN |  |  =   |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
  * |  Tab   |   Q  |   W  |   E  |   R  |   T  | MO   |  | MO   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
  * |--------+------+------+------+------+------| MEDIA|  | MEDIA|------+------+------+------+------+--------|
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TG(PLVR),
+  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TG(STEN),
   KC_TAB,         KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,      MO(MEDIA),
   LCTL_T(KC_ESC), KC_A,         KC_S,     KC_D,           KC_F,           KC_G,
   KC_LSHIFT,      KC_Z,         KC_X,     KC_C,           KC_V,           KC_B,      MO(CODER),
@@ -224,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _x_,
   _x_,       KC_N, KC_M
 ),
-/* Keymap 4: TxBolt (Serial) for Stego
+/* Keymap 4: (Serial) for Stego
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * | BKSPC  |   #  |   #  |   #  |   #  |   #  | BASE |  |      |   #  |   #  |   #  |   #  |  #   |   #    |
@@ -245,9 +245,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                               |      |      |      |  |      |      |      |
  *                               `--------------------'  `--------------------'
  */
-[TXBOLT] = LAYOUT_ergodox(  // layer 4 : TXBOLT
+[STEN] = LAYOUT_ergodox(  // layer 4 : Stenography
   // left hand
-  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  TG(BASE),
+  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  TG(STEN),
   _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1, MO(MEDIA),
   _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2,
   _x_,     _x_,    _x_,    _x_,    _x_,    _x_,     MO(CODER),
@@ -424,6 +424,7 @@ void matrix_init_user(void) {
     set_unicode_input_mode(UC_OSX);
     rgblight_mode(0);
     rgblight_init();
+    steno_set_mode(STENO_MODE_GEMINI);
 };
 
 // Runs constantly in the background, in a loop.
@@ -499,6 +500,5 @@ uint32_t layer_state_set_user(uint32_t state) {
     default:
       break;
   }
-
   return state;
-};
+}
