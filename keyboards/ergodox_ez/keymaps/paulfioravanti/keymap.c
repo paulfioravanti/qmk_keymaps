@@ -2,6 +2,10 @@
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
+// For stego
+/* #include "sendchar.h" */
+/* #include "virtser.h" */
+#include "keymap_steno.h"
 
 #define BASE 0 // default layer
 #define CODER 1 // coder layer
@@ -174,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ___, ___,     ___,     ___,     ___,     ___, ___,
        KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, ___, KC_MPLY,
   ___, ___,     ___,     KC_MPRV, KC_MNXT, ___, ___,
-                 KC_VOLU, KC_VOLD, KC_MUTE, ___, ___,
+                KC_VOLU, KC_VOLD, KC_MUTE, ___, ___,
   ___, ___,
   ___,
   ___, KC_BTN2, KC_BTN1
@@ -182,13 +186,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 3: Modified QWERTY for Plover Stego
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |        |      |      |      |      |      | BASE |  |      |      |      |      |      |      |        |
+ * |        |   1  |   2  |   3  |   4  |   5  | BASE |  |      |   6  |   7  |   8  |   9  |  0   |        |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |        |   1  |   2  |   3  |   4  |   5  |MO    |  |MO    |   6  |   7  |   8  |   9  |  0   |        |
+ * |        |   Q  |   W  |   E  |   R  |   T  |MO    |  |MO    |   Y  |   U  |   I  |   O  |  P   |   [    |
  * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
- * |        |   Q  |   W  |   E  |   R  |   T  |------|  |------|   Y  |   U  |   I  |   O  |  P   |   [    |
+ * |        |   A  |   S  |   D  |   F  |   G  |------|  |------|   H  |   J  |   K  |   L  |  ;   |   '    |
  * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
- * |        |   A  |   S  |   D  |   F  |   G  |CODER |  |CODER |   H  |   J  |   K  |   L  |  ;   |   '    |
+ * |        |      |      |      |      |      |CODER |  |CODER |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                              |      |      |      |      |      |
  *   `----------------------------------'                              `----------------------------------'
@@ -202,63 +206,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [PLVR] = LAYOUT_ergodox(  // layer 3 : PLVR
   // left hand
-  _x_,  _x_, _x_,  _x_,  _x_,  _x_,  TG(PLVR),
-  _x_, KC_1, KC_2, KC_3, KC_4, KC_5, MO(MEDIA),
-  _x_, KC_Q, KC_W, KC_E, KC_R, KC_T,
-  _x_, KC_A, KC_S, KC_D, KC_F, KC_G, MO(CODER),
+  _x_, KC_1, KC_2, KC_3, KC_4, KC_5, TG(PLVR),
+  _x_, KC_Q, KC_W, KC_E, KC_R, KC_T, MO(MEDIA),
+  _x_, KC_A, KC_S, KC_D, KC_F, KC_G,
+  _x_, _x_,  _x_,  _x_,  _x_,  _x_,  MO(CODER),
   _x_, _x_,  _x_,  _x_,  _x_,
                                _x_,  _x_,
                                      _x_,
                          KC_C, KC_V, _x_,
   // right hand
-  _x_,       _x_,  _x_,  _x_,  _x_,  _x_,     _x_,
-  MO(MEDIA), KC_6, KC_7, KC_8, KC_9, KC_0,    _x_,
-             KC_Y, KC_U, KC_I, KC_O, KC_P,    KC_LBRC,
-  MO(CODER), KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+  _x_,       KC_6, KC_7, KC_8, KC_9, KC_0,    _x_,
+  MO(MEDIA), KC_Y, KC_U, KC_I, KC_O, KC_P,    KC_LBRC,
+             KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+  MO(CODER), _x_,  _x_,  _x_,  _x_,  _x_,     _x_,
                    _x_,  _x_,  _x_,  _x_,     _x_,
   _x_,       _x_,
   _x_,
   _x_,       KC_N, KC_M
 ),
-// TxBolt Codes
-#define Sl 0b00000001
-#define Tl 0b00000010
-#define Kl 0b00000100
-#define Pl 0b00001000
-#define Wl 0b00010000
-#define Hl 0b00100000
-#define Rl 0b01000001
-#define Al 0b01000010
-#define Ol 0b01000100
-#define X  0b01001000
-#define Er 0b01010000
-#define Ur 0b01100000
-#define Fr 0b10000001
-#define Rr 0b10000010
-#define Pr 0b10000100
-#define Br 0b10001000
-#define Lr 0b10010000
-#define Gr 0b10100000
-#define Tr 0b11000001
-#define Sr 0b11000010
-#define Dr 0b11000100
-#define Zr 0b11001000
-#define NM 0b11010000
-#define GRPMASK 0b11000000
-#define GRP0 0b00000000
-#define GRP1 0b01000000
-#define GRP2 0b10000000
-#define GRP3 0b11000000
 /* Keymap 4: TxBolt (Serial) for Stego
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * | BKSPC  |      |      |      |      |      | BASE |  |      |      |      |      |      |      |        |
+ * | BKSPC  |   #  |   #  |   #  |   #  |   #  | BASE |  |      |   #  |   #  |   #  |   #  |  #   |   #    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |        |   #  |   #  |   #  |   #  |   #  |MO    |  |MO    |   #  |   #  |   #  |   #  |  #   |   #    |
+ * |        |   S  |   T  |   P  |   H  |   *  |MO    |  |MO    |   *  |   F  |   P  |   L  |  T   |   D    |
  * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
- * |        |   S  |   T  |   P  |   H  |   *  |------|  |------|   *  |   F  |   P  |   L  |  T   |   D    |
+ * |        |   S  |   K  |   W  |   R  |   *  |------|  |------|   *  |   R  |   B  |   G  |  S   |   Z    |
  * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
- * |        |   S  |   K  |   W  |   R  |   *  |CODER |  |CODER |   *  |   R  |   B  |   G  |  S   |   Z    |
+ * |        |      |      |      |      |      |CODER |  |CODER |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                              |      |      |      |      |      |
  *   `----------------------------------'                              `----------------------------------'
@@ -272,23 +247,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [TXBOLT] = LAYOUT_ergodox(  // layer 4 : TXBOLT
   // left hand
-  KC_BSPC, _x_,   _x_,   _x_,   _x_,   _x_,   TG(BASE),
-  _x_,     M(NM), M(NM), M(NM), M(NM), M(NM), MO(MEDIA),
-  _x_,     M(Sl), M(Tl), M(Pl), M(Hl), M(X),
-  _x_,     M(Sl), M(Kl), M(Wl), M(Rl), M(X),  MO(CODER),
-  _x_,     _x_,   _x_,   _x_,   _x_,
-                                       _x_,   _x_,
-                                              _x_,
-                                M(Al), M(Ol), _x_,
+  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  TG(BASE),
+  _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1, MO(MEDIA),
+  _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2,
+  _x_,     _x_,    _x_,    _x_,    _x_,    _x_,     MO(CODER),
+  _x_,     _x_,    _x_,    _x_,    _x_,
+                                           _x_,     _x_,
+                                                    _x_,
+                                   STN_A,  STN_O,   _x_,
   // right hand
-  _x_,       _x_,   _x_,   _x_,   _x_,   _x_,   _x_,
-  MO(MEDIA), M(NM), M(NM), M(NM), M(NM), M(NM), _x_,
-             M(X),  M(Fr), M(Pr), M(Lr), M(Tr), M(Dr),
-  MO(CODER), M(X),  M(Rr), M(Br), M(Gr), M(Sr), M(Zr),
-                    _x_,   _x_,   _x_,   _x_,   _x_,
+  _x_,       STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
+  MO(MEDIA), STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
+             STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
+  MO(CODER), _x_,     _x_,    _x_,    _x_,    _x_,    _x_,
+                      _x_,    _x_,    _x_,    _x_,    _x_,
   _x_,       _x_,
   _x_,
-  _x_,       M(Er), M(Ur)
+  _x_,       STN_E,   STN_U
 )
 };
 
