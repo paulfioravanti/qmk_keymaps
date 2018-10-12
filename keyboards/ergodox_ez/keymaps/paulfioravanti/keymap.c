@@ -2,16 +2,14 @@
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
-// For stego
-/* #include "sendchar.h" */
-/* #include "virtser.h" */
+// For stenography
 #include "keymap_steno.h"
 
-#define BASE 0 // default layer
-#define CODER 1 // coder layer
-#define MEDIA 2 // media keys
-#define PLVR 3 // steno layer for Plover
-#define STEN 4 // Steno Virtual Serial
+#define BASE 0 // Default layer
+#define CODER 1 // Coder layer
+#define MEDIA 2 // Media keys
+#define STEN 3 // Stenography layer
+#define PLVR 4 // QWERTY-based steno layer for Plover
 
 // Helpers to make keymaps a bit easier to read at a glance
 #define ___ KC_TRNS
@@ -62,7 +60,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Qwerty layer
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  | STEN |  |  =   |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
+ * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  | STEN |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
  * |  Tab   |   Q  |   W  |   E  |   R  |   T  | MO   |  | MO   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
  * |--------+------+------+------+------+------| MEDIA|  | MEDIA|------+------+------+------+------+--------|
@@ -183,48 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ___,
   ___, KC_BTN2, KC_BTN1
 ),
-/* Keymap 3: Modified QWERTY for Plover Stego
- *
- * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |        |   1  |   2  |   3  |   4  |   5  | BASE |  |      |   6  |   7  |   8  |   9  |  0   |        |
- * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |        |   Q  |   W  |   E  |   R  |   T  |MO    |  |MO    |   Y  |   U  |   I  |   O  |  P   |   [    |
- * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
- * |        |   A  |   S  |   D  |   F  |   G  |------|  |------|   H  |   J  |   K  |   L  |  ;   |   '    |
- * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |CODER |  |CODER |      |      |      |      |      |        |
- * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                              |      |      |      |      |      |
- *   `----------------------------------'                              `----------------------------------'
- *                                      ,-------------.  ,-------------.
- *                                      |      |      |  |      |      |
- *                               ,------|------|------|  |------+------+------.
- *                               |      |      |      |  |      |      |      |
- *                               |  C   |   V  |------|  |------|  N   |  M   |
- *                               |      |      |      |  |      |      |      |
- *                               `--------------------'  `--------------------'
- */
-[PLVR] = LAYOUT_ergodox(  // layer 3 : PLVR
-  // left hand
-  _x_, KC_1, KC_2, KC_3, KC_4, KC_5, TG(PLVR),
-  _x_, KC_Q, KC_W, KC_E, KC_R, KC_T, MO(MEDIA),
-  _x_, KC_A, KC_S, KC_D, KC_F, KC_G,
-  _x_, _x_,  _x_,  _x_,  _x_,  _x_,  MO(CODER),
-  _x_, _x_,  _x_,  _x_,  _x_,
-                               _x_,  _x_,
-                                     _x_,
-                         KC_C, KC_V, _x_,
-  // right hand
-  _x_,       KC_6, KC_7, KC_8, KC_9, KC_0,    _x_,
-  MO(MEDIA), KC_Y, KC_U, KC_I, KC_O, KC_P,    KC_LBRC,
-             KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
-  MO(CODER), _x_,  _x_,  _x_,  _x_,  _x_,     _x_,
-                   _x_,  _x_,  _x_,  _x_,     _x_,
-  _x_,       _x_,
-  _x_,
-  _x_,       KC_N, KC_M
-),
-/* Keymap 4: (Serial) for Stego
+/* Keymap 3: Stenography
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * | BKSPC  |   #  |   #  |   #  |   #  |   #  | BASE |  |      |   #  |   #  |   #  |   #  |  #   |   #    |
@@ -245,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                               |      |      |      |  |      |      |      |
  *                               `--------------------'  `--------------------'
  */
-[STEN] = LAYOUT_ergodox(  // layer 4 : Stenography
+[STEN] = LAYOUT_ergodox(  // layer 3 : Stenography
   // left hand
   KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  TG(STEN),
   _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1, MO(MEDIA),
@@ -264,13 +221,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _x_,       _x_,
   _x_,
   _x_,       STN_E,   STN_U
+),
+/* Keymap 4: Modified QWERTY for Plover Stenography
+ *
+ * ,--------------------------------------------------.  ,--------------------------------------------------.
+ * |        |   1  |   2  |   3  |   4  |   5  | BASE |  |      |   6  |   7  |   8  |   9  |  0   |        |
+ * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
+ * |        |   Q  |   W  |   E  |   R  |   T  |MO    |  |MO    |   Y  |   U  |   I  |   O  |  P   |   [    |
+ * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
+ * |        |   A  |   S  |   D  |   F  |   G  |------|  |------|   H  |   J  |   K  |   L  |  ;   |   '    |
+ * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |CODER |  |CODER |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                              |      |      |      |      |      |
+ *   `----------------------------------'                              `----------------------------------'
+ *                                      ,-------------.  ,-------------.
+ *                                      |      |      |  |      |      |
+ *                               ,------|------|------|  |------+------+------.
+ *                               |      |      |      |  |      |      |      |
+ *                               |  C   |   V  |------|  |------|  N   |  M   |
+ *                               |      |      |      |  |      |      |      |
+ *                               `--------------------'  `--------------------'
+ */
+[PLVR] = LAYOUT_ergodox(  // layer 4 : QWERTY for Plover
+  // left hand
+  _x_, KC_1, KC_2, KC_3, KC_4, KC_5, TG(PLVR),
+  _x_, KC_Q, KC_W, KC_E, KC_R, KC_T, MO(MEDIA),
+  _x_, KC_A, KC_S, KC_D, KC_F, KC_G,
+  _x_, _x_,  _x_,  _x_,  _x_,  _x_,  MO(CODER),
+  _x_, _x_,  _x_,  _x_,  _x_,
+                               _x_,  _x_,
+                                     _x_,
+                         KC_C, KC_V, _x_,
+  // right hand
+  _x_,       KC_6, KC_7, KC_8, KC_9, KC_0,    _x_,
+  MO(MEDIA), KC_Y, KC_U, KC_I, KC_O, KC_P,    KC_LBRC,
+             KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+  MO(CODER), _x_,  _x_,  _x_,  _x_,  _x_,     _x_,
+                   _x_,  _x_,  _x_,  _x_,     _x_,
+  _x_,       _x_,
+  _x_,
+  _x_,       KC_N, KC_M
 )
 };
 
 // NOTE: Sending Hex codes for Emojis involved needing to keep my
 // input source permanently on "Unicode Hex Input", which doesn't
 // seem to play well with Japanese IME, so Emojis will just have
-// to stay as Slack-style strings.
+// to stay as Slack-style strings for now.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch (keycode) {
@@ -284,14 +282,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("<|");
         return false;
       case COFFEE:
-        /* SEND_STRING(SS_LALT("2615")); */
+        // SEND_STRING(SS_LALT("2615"));
         SEND_STRING(":coffee:");
         return false;
       case DOUBLE_COLON:
         SEND_STRING("::");
         return false;
       case DOWN_ARROW:
-        /* SEND_STRING(SS_LALT("2B07")); */
+        // SEND_STRING(SS_LALT("2B07"));
         SEND_STRING(":arrow_down:");
         return false;
       case DOWN_PANE:
@@ -325,7 +323,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
         return false;
       case LAUGH:
-        /* SEND_STRING(SS_LALT("D83D+DE02")); */
+        // SEND_STRING(SS_LALT("D83D+DE02"));
         SEND_STRING(":joy:");
         return false;
       case LEFT_ERB:
@@ -343,7 +341,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("-=");
         return false;
       case MINUS_ONE:
-        /* SEND_STRING(SS_LALT("D83D+DC4E")); */
+        // SEND_STRING(SS_LALT("D83D+DC4E"));
         SEND_STRING(":-1:");
         return false;
       case MONOSNAP:
@@ -352,7 +350,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
         return false;
       case NEUTRAL:
-        /* SEND_STRING(SS_LALT("D83D+DE10")); */
+        // SEND_STRING(SS_LALT("D83D+DE10"));
         SEND_STRING(":neutral:");
         return false;
       case NOT_EQUALS:
@@ -368,12 +366,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("+=");
         return false;
       case PLUS_ONE:
-        /* SEND_STRING(SS_LALT("D83D+DC4D")); */
+        // SEND_STRING(SS_LALT("D83D+DC4D"));
         SEND_STRING(":+1:");
         return false;
       case RIGHT_ARROW:
-        /* SEND_STRING(SS_LALT("27A1")); */
-        /* UNICODE(0x000027A1); */
+        // SEND_STRING(SS_LALT("27A1"));
+        // UNICODE(0x000027A1);
         SEND_STRING(":arrow_right:");
         return false;
       case RIGHT_ERB:
@@ -385,14 +383,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
         return false;
       case SAD:
-        /* SEND_STRING(SS_LALT("D83D+DE1E")); */
+        // SEND_STRING(SS_LALT("D83D+DE1E"));
         SEND_STRING(":disappointed:");
         return false;
       case SINGLE_ARROW:
         SEND_STRING("->");
         return false;
       case SMILE:
-        /* SEND_STRING(SS_LALT("D83D+DE04")); */
+        // SEND_STRING(SS_LALT("D83D+DE04"));
         SEND_STRING(":smile:");
         return false;
       case SPERMY:
@@ -402,7 +400,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":trollface:");
         return false;
       case UP_ARROW:
-        /* SEND_STRING(SS_LALT("2B06")); */
+        // SEND_STRING(SS_LALT("2B06"));
         SEND_STRING(":arrow_up:");
         return false;
       case UP_PANE:
@@ -411,7 +409,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
         return false;
       case WINK:
-        /* SEND_STRING(SS_LALT("D83D+DE09")); */
+        // SEND_STRING(SS_LALT("D83D+DE09"));
         SEND_STRING(":wink:");
         return false;
     }
@@ -421,9 +419,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
+    // Set Unicode mode to Mac OS. More information:
+    // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_unicode.md
     set_unicode_input_mode(UC_OSX);
+    // Default all Ergodox EZ right-hand-side lights to be off.
     rgblight_mode(0);
     rgblight_init();
+    // NOTE: "GeminiPR" is a stenography protocol that I've chosen to use when
+    // communicating with Plover. The other option was "TX Bolt", but that
+    // seemed to result in extraneous keystrokes and other strange behaviour.
+    // Although QMK says TX Bolt is the "default" protocol, it is an older
+    // protocol than GeminiPR.
+    // More information in the QMK docs:
+    // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_stenography.md#plover-with-steno-protocol
     steno_set_mode(STENO_MODE_GEMINI);
 };
 
@@ -433,6 +441,8 @@ void matrix_scan_user(void) {
 };
 
 // Runs whenever there is a layer state change.
+// NOTE: Not all cases here will get used, but there's probably no harm
+// in keeping them here.
 uint32_t layer_state_set_user(uint32_t state) {
   ergodox_board_led_off();
   ergodox_right_led_1_off();
@@ -494,7 +504,7 @@ uint32_t layer_state_set_user(uint32_t state) {
       ergodox_right_led_2_on();
       ergodox_right_led_3_on();
       #ifdef RGBLIGHT_COLOR_LAYER_7
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_6);
+        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_7);
       #endif
       break;
     default:
