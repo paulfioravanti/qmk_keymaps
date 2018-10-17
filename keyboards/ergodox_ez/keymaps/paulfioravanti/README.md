@@ -29,16 +29,21 @@ in the `qmk_firmware` root directory.
 ## N-key Rollover
 
 To toggle [n-key rollover][] (NKRO), press LShift+RShift+N. If you want to have
-NKRO enabled by default, add `#define FORCE_NKRO` to the `config.h` file
-([source][NKRO doesn't work with ergodox ez]).
+NKRO enabled by default, add the line
+
+```c
+#define FORCE_NKRO`
+```
+
+to the `config.h` file ([source][NKRO doesn't work with ergodox ez]).
 
 ## Stenography
 
 > Feel free to ignore this section if you are not using the Stenography layer.
 
-In order to use the Stenography layer (currently `STEN` in `keymap.c`), you will
-need to install [Plover][] (`brew cask install plover`), and configure it in the
-following way:
+In order to use the Stenography layer (currently `STEN` in [`keymap.c`][]),
+you will need to install [Plover][] (`brew cask install plover`), and configure
+it in the following way:
 
 - Click the [Configure...] button in the main "Plover" window, and the
   "Plover Configuration" window should open
@@ -65,6 +70,7 @@ Follow instructions (and watch video) on the
 [ErgoDox EZ Graphical Configurator page][].
 
 [ErgoDox EZ Graphical Configurator page]: https://ergodox-ez.com/pages/graphical-configurator
+[`keymap.c`]: keymap.c
 [my original ErgoDox Firmware configuration]: https://github.com/paulfioravanti/ergodox-firmware/blob/custom-layout/firmware/keyboard/ergodox/layout/custom-layout.c
 [n-key rollover]: https://en.wikipedia.org/wiki/Rollover_(key)#n-key_rollover
 [NKRO doesn't work with ergodox ez]: https://github.com/qmk/qmk_firmware/issues/1695
