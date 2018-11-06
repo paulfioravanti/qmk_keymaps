@@ -73,8 +73,17 @@ Then, configure it in the following way:
 Follow instructions (and watch video) on the
 [ErgoDox EZ Graphical Configurator page][].
 
+## Blog Posts
+
+I have documented parts of the creation of this layout in the following blog
+posts:
+
+- [Escape the defaults and Control your keyboard with QMK][]
+- [Starting Stenography with an Ergodox][]
+
 [`config.h`]: config.h
 [ErgoDox EZ Graphical Configurator page]: https://ergodox-ez.com/pages/graphical-configurator
+[Escape the defaults and Control your keyboard with QMK]: https://paulfioravanti.com/blog/2018/07/31/escape-the-defaults-and-control-your-keyboard-with-qmk/
 [`keymap.c`]: keymap.c
 [my original ErgoDox Firmware configuration]: https://github.com/paulfioravanti/ergodox-firmware/blob/custom-layout/firmware/keyboard/ergodox/layout/custom-layout.c
 [n-key rollover]: https://en.wikipedia.org/wiki/Rollover_(key)#n-key_rollover
@@ -82,5 +91,6 @@ Follow instructions (and watch video) on the
 [Plover]: https://www.openstenoproject.org/plover/
 [Plover's Troubleshooting wiki page]: https://github.com/openstenoproject/plover/wiki/Troubleshooting:-Common-Issues
 [QMK ErgoDox EZ default keymap]: https://github.com/qmk/qmk_firmware/blob/master/keyboards/ergodox_ez/keymaps/default/keymap.c
+[Starting Stenography with an Ergodox]: https://paulfioravanti.com/blog/2018/10/18/starting-stenography-with-an-ergodox/
 [Stenography in QMK]: https://github.com/qmk/qmk_firmware/blob/master/docs/feature_stenography.md#configuring-qmk-for-steno
 [Teensy Loader for Mac OS]: https://pjrc.com/teensy/loader_mac.html
