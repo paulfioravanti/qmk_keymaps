@@ -10,6 +10,7 @@
 #define MEDIA 2 // Media keys
 #define STEN 3 // Stenography layer
 #define PLVR 4 // QWERTY-based steno layer for Plover
+#define STEN_HIGH 5 // Stenography layer with higher positioning
 
 // Helpers to make keymaps a bit easier to read at a glance
 #define ___ KC_TRNS
@@ -139,6 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_AUDIO_MUTE,
   KC_MEDIA_PLAY_PAUSE, KC_WWW_BACK, KC_WWW_FORWARD
 ),
+
 /* Keymap 2: Media and mouse keys
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
@@ -181,16 +183,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ___,
   ___, KC_BTN2, KC_BTN1
 ),
+
 /* Keymap 3: Stenography
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * | BKSPC  |   #  |   #  |   #  |   #  |   #  | BASE |  |      |   #  |   #  |   #  |   #  |  #   |   #    |
+ * |        |      |      |      |      |      | BASE |  |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |        |   S  |   T  |   P  |   H  |   *  |MO    |  |MO    |   *  |   F  |   P  |   L  |  T   |   D    |
+ * | BKSPC  |   #  |   #  |   #  |   #  |   #  |MO    |  |MO    |   #  |   #  |   #  |   #  |  #   |   #    |
  * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
- * |        |   S  |   K  |   W  |   R  |   *  |------|  |------|   *  |   R  |   B  |   G  |  S   |   Z    |
+ * |        |   S  |   T  |   P  |   H  |   *  |------|  |------|   *  |   F  |   P  |   L  |  T   |   D    |
  * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |CODER |  |CODER |      |      |      |      |      |        |
+ * |        |   S  |   K  |   W  |   R  |   *  |CODER |  |CODER |   *  |   R  |   B  |   G  |  s   |   Z    |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                              |      |      |      |      |      |
  *   `----------------------------------'                              `----------------------------------'
@@ -204,24 +207,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [STEN] = LAYOUT_ergodox(  // layer 3 : Stenography
   // left hand
-  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  TG(STEN),
-  _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1, MO(MEDIA),
-  _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2,
-  _x_,     _x_,    _x_,    _x_,    _x_,    _x_,     MO(CODER),
+  _x_,     _x_,    _x_,    _x_,    _x_,    _x_,     TG(STEN),
+  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  MO(MEDIA),
+  _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1,
+  _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2, MO(CODER),
   _x_,     _x_,    _x_,    _x_,    _x_,
                                            _x_,     _x_,
                                                     _x_,
                                    STN_A,  STN_O,   _x_,
+
   // right hand
-  _x_,       STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
-  MO(MEDIA), STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
-             STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
-  MO(CODER), _x_,     _x_,    _x_,    _x_,    _x_,    _x_,
+  _x_,       _x_,     _x_,    _x_,    _x_,    _x_,    _x_,
+  MO(MEDIA), STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
+             STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
+  MO(CODER), STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
                       _x_,    _x_,    _x_,    _x_,    _x_,
   _x_,       _x_,
   _x_,
   _x_,       STN_E,   STN_U
 ),
+
 /* Keymap 4: Modified QWERTY for Plover Stenography
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
@@ -262,6 +267,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _x_,       _x_,
   _x_,
   _x_,       KC_N, KC_M
+),
+
+/* Keymap 5: Stenography with keys higher up on the board
+ *
+ * ,--------------------------------------------------.  ,--------------------------------------------------.
+ * | BKSPC  |   #  |   #  |   #  |   #  |   #  | BASE |  |      |   #  |   #  |   #  |   #  |  #   |   #    |
+ * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
+ * |        |   S  |   T  |   P  |   H  |   *  |MO    |  |MO    |   *  |   F  |   P  |   L  |  T   |   D    |
+ * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
+ * |        |   S  |   K  |   W  |   R  |   *  |------|  |------|   *  |   R  |   B  |   G  |  S   |   Z    |
+ * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |CODER |  |CODER |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                              |      |      |      |      |      |
+ *   `----------------------------------'                              `----------------------------------'
+ *                                      ,-------------.  ,-------------.
+ *                                      |      |      |  |      |      |
+ *                               ,------|------|------|  |------+------+------.
+ *                               |      |      |      |  |      |      |      |
+ *                               |  A   |   O  |------|  |------|  E   |  U   |
+ *                               |      |      |      |  |      |      |      |
+ *                               `--------------------'  `--------------------'
+ */
+[STEN_HIGH] = LAYOUT_ergodox(  // layer 5 : Stenography High
+  // left hand
+  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  TG(STEN),
+  _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1, MO(MEDIA),
+  _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2,
+  _x_,     _x_,    _x_,    _x_,    _x_,    _x_,     MO(CODER),
+  _x_,     _x_,    _x_,    _x_,    _x_,
+                                           _x_,     _x_,
+                                                    _x_,
+                                   STN_A,  STN_O,   _x_,
+  // right hand
+  _x_,       STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
+  MO(MEDIA), STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
+             STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
+  MO(CODER), _x_,     _x_,    _x_,    _x_,    _x_,    _x_,
+                      _x_,    _x_,    _x_,    _x_,    _x_,
+  _x_,       _x_,
+  _x_,
+  _x_,       STN_E,   STN_U
 )
 };
 
