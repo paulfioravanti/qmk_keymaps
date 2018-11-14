@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | RESET  |  F1  |  F2  |  F3  |  F4  |  F5  | LCmd~|  | F12  |  F6  |  F7  |  F8  |  F9  | F10  |  F11   |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
  * |UP_ARROW|  &&= |  |>  |  &&  |  ->  |  !=  |      |  |      |pageU |   [  |  {   | <%=  |COFFEE| TROLL  |
- * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|  [x] |  | [x]  |------+------+------+------+------+--------|
  * |R_ARROW |  +=  |  |   | ||=  |  =>  |  ==  |------|  |------|arrowL|arrowD|arrowU|arrowR|      |  +1    |
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
  * |DN_ARROW|  -=  |  <|  |  ||  |  ~>  |  =~  |      |  |      |pageD |   ]  |  }   |  %>  |   \  |  -1    |
@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [CODER] = LAYOUT_ergodox(
   // left hand
   RESET,           KC_F1,        KC_F2,           KC_F3,           KC_F4,        KC_F5,          LGUI(KC_TILDE),
-  UP_ARROW,        AND_EQUALS,   FORWARD_PIPE,    AND_AND,         SINGLE_ARROW, NOT_EQUALS,     ___,
+  UP_ARROW,        AND_EQUALS,   FORWARD_PIPE,    AND_AND,         SINGLE_ARROW, NOT_EQUALS,     _x_,
   UNICODE(0x27A1), PLUS_EQUALS,  KC_PIPE,         OR_EQUALS,       HASH_ROCKET,  EQUALS_EQUALS,
   DOWN_ARROW,      MINUS_EQUALS, BACKWARD_PIPE,   OR_OR,           SPERMY,       MATCH_OPERATOR, ___,
   KC_ESC,          DOUBLE_COLON, INCLUSIVE_RANGE, EXCLUSIVE_RANGE, ___,
@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                    MONOSNAP,     SGUI(KC_5),     JPN,
   // right hand
   KC_F12, KC_F6,     KC_F7,          KC_F8,                KC_F9,     KC_F10,    KC_F11,
-  ___,    KC_PGUP,   KC_LBRACKET,    KC_LEFT_CURLY_BRACE,  LEFT_ERB,  COFFEE,    TROLL,
+  _x_,    KC_PGUP,   KC_LBRACKET,    KC_LEFT_CURLY_BRACE,  LEFT_ERB,  COFFEE,    TROLL,
           KC_LEFT,   KC_DOWN,        KC_UP,                KC_RIGHT,  ___,       PLUS_ONE,
   ___,    KC_PGDOWN, KC_RBRACKET,    KC_RIGHT_CURLY_BRACE, RIGHT_ERB, KC_BSLASH, MINUS_ONE,
                      LAUGH,          SMILE,                WINK,      NEUTRAL,   SAD,
@@ -144,87 +144,87 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 2: Media and mouse keys
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |        |      |      |      |      |      |      |  |      |      |      |      |      |      |        |
+ * |   [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x] |  | [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x]   |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |        |      |      | MsUp |      |      |      |  |      |      |      |      |      |      |        |
+ * |   [x]  |  [x] |  [x] | MsUp |  [x] |  [x] |      |  |      |  [x] |  [x] |  [x] |  [x] |  [x] |  [x]   |
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
- * |        |      |MsLeft|MsDown|MsRght|      |------|  |------|MsLeft|MsDown| MsUp |MsRght|      |  Play  |
+ * |   [x]  |  [x] |MsLeft|MsDown|MsRght|  [x] |------|  |------|MsLeft|MsDown| MsUp |MsRght|  [x] |  Play  |
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |  |      |      |      | Prev | Next |      |        |
+ * |   [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x] |  | [x]  |  [x] |  [x] | Prev | Next |  [x] |  [x]   |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   |      |      |      | Lclk | Rclk |                              |VolUp |VolDn | Mute |      |      |
+ *   | [x]  |  [x] |  [x] | Lclk | Rclk |                              |VolUp |VolDn | Mute |  [x] |  [x] |
  *   `----------------------------------'                              `----------------------------------'
  *                                      ,-------------.  ,-------------.
- *                                      |      |      |  |      |      |
+ *                                      |  [x] |  [x] |  | [x]  | [x]  |
  *                               ,------|------|------|  |------+------+------.
- *                               |      |      |      |  |      | Rclk |Lclk  |
- *                               |      |      |------|  |------|      |      |
- *                               |      |      |      |  |      |      |      |
+ *                               |      |      |  [x] |  | [x]  | Rclk |Lclk  |
+ *                               |  [x] |  [x] |------|  |------|      |      |
+ *                               |      |      |  [x] |  | [x]  |      |      |
  *                               `--------------------'  `--------------------'
  */
 // MEDIA AND MOUSE
 [MEDIA] = LAYOUT_ergodox(
   // left hand
-  ___, ___, ___,     ___,     ___,     ___,     ___,
-  ___, ___, ___,     KC_MS_U, ___,     ___,     ___,
-  ___, ___, KC_MS_L, KC_MS_D, KC_MS_R, ___,
-  ___, ___, ___,     ___,     ___,     ___,     ___,
-  ___, ___, ___,     ___,     ___,
-                                       ___,     ___,
-                                                ___,
-                              KC_BTN1, KC_BTN2, ___,
+  _x_, _x_, _x_,     _x_,     _x_,     _x_, _x_,
+  _x_, _x_, _x_,     KC_MS_U, _x_,     _x_, ___,
+  _x_, _x_, KC_MS_L, KC_MS_D, KC_MS_R, _x_,
+  _x_, _x_, _x_,     _x_,     _x_,     _x_, _x_,
+  _x_, _x_, _x_,     KC_BTN1, KC_BTN2,
+                                       _x_, _x_,
+                                            _x_,
+                                  _x_, _x_, _x_,
   // right hand
-  ___, ___,     ___,     ___,     ___,     ___, ___,
-  ___, ___,     ___,     ___,     ___,     ___, ___,
-       KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, ___, KC_MPLY,
-  ___, ___,     ___,     KC_MPRV, KC_MNXT, ___, ___,
-                KC_VOLU, KC_VOLD, KC_MUTE, ___, ___,
-  ___, ___,
-  ___,
-  ___, KC_BTN2, KC_BTN1
+  _x_, _x_,     _x_,     _x_,     _x_,     _x_, _x_,
+  _x_, _x_,     _x_,     _x_,     _x_,     _x_, _x_,
+       KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _x_, KC_MPLY,
+  _x_, _x_,     ___,     KC_MPRV, KC_MNXT, _x_, _x_,
+                KC_VOLU, KC_VOLD, KC_MUTE, _x_, _x_,
+  _x_, _x_,
+  _x_,
+  _x_, KC_BTN2, KC_BTN1
 ),
 
 /* Keymap 3: Stenography
  *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |        |      |      |      |      |      | BASE |  |      |      |      |      |      |      |        |
+ * | BSPACE |  [x] |  [x] |  [x] |  [x] |  [x] |      |  | [x]  |  [x] |  [x] |  [x] |  [x] |  [x] | SPACE  |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * | BKSPC  |   #  |   #  |   #  |   #  |   #  |MO    |  |MO    |   #  |   #  |   #  |   #  |  #   |   #    |
- * |--------+------+------+------+------+------|MEDIA |  |MEDIA |------+------+------+------+------+--------|
- * |        |   S  |   T  |   P  |   H  |   *  |------|  |------|   *  |   F  |   P  |   L  |  T   |   D    |
- * |--------+------+------+------+------+------|MO    |  |MO    |------+------+------+------+------+--------|
- * |        |   S  |   K  |   W  |   R  |   *  |CODER |  |CODER |   *  |   R  |   B  |   G  |  s   |   Z    |
+ * |   [x]  |   #  |   #  |   #  |   #  |   #  |      |  |      |   #  |   #  |   #  |   #  |   #  |   #    |
+ * |--------+------+------+------+------+------|  [x] |  | [x]  |------+------+------+------+------+--------|
+ * |   [x]  |   S  |   T  |   P  |   H  |   *  |------|  |------|   *  |   F  |   P  |   L  |   T  |   D    |
+ * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
+ * |   [x]  |   S  |   K  |   W  |   R  |   *  |  [x] |  | [x]  |   *  |   R  |   B  |   G  |   s  |   Z    |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                              |      |      |      |      |      |
+ *   | [x]  |  [x] |  [x] |  [x] |  [x] |                              |  [x] |  [x] |  [x] |  [x] |  [x] |
  *   `----------------------------------'                              `----------------------------------'
  *                                      ,-------------.  ,-------------.
- *                                      |      |      |  |      |      |
+ *                                      |  [x] |  [x] |  | [x]  | [x]  |
  *                               ,------|------|------|  |------+------+------.
- *                               |      |      |      |  |      |      |      |
+ *                               |      |      |  [x] |  | [x]  |      |      |
  *                               |  A   |   O  |------|  |------|  E   |  U   |
- *                               |      |      |      |  |      |      |      |
+ *                               |      |      |  [x] |  | [x]  |      |      |
  *                               `--------------------'  `--------------------'
  */
 [STEN] = LAYOUT_ergodox(  // layer 3 : Stenography
   // left hand
-  _x_,     _x_,    _x_,    _x_,    _x_,    _x_,     TG(STEN),
-  KC_BSPC, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  MO(MEDIA),
+  KC_BSPC, _x_,    _x_,    _x_,    _x_,    _x_,     ___,
+  _x_,     STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  _x_,
   _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1,
-  _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2, MO(CODER),
+  _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2, _x_,
   _x_,     _x_,    _x_,    _x_,    _x_,
                                            _x_,     _x_,
                                                     _x_,
                                    STN_A,  STN_O,   _x_,
 
   // right hand
-  _x_,       _x_,     _x_,    _x_,    _x_,    _x_,    _x_,
-  MO(MEDIA), STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
-             STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
-  MO(CODER), STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
-                      _x_,    _x_,    _x_,    _x_,    _x_,
-  _x_,       _x_,
+  _x_, _x_,     _x_,    _x_,    _x_,    _x_,    KC_SPACE,
+  _x_, STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
+       STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
+  _x_, STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
+                _x_,    _x_,    _x_,    _x_,    _x_,
+  _x_, _x_,
   _x_,
-  _x_,       STN_E,   STN_U
+  _x_, STN_E,   STN_U
 ),
 
 /* Keymap 4: Modified QWERTY for Plover Stenography
