@@ -120,14 +120,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [CODER] = LAYOUT_ergodox(
   // left hand
-  RESET,           KC_F1,        KC_F2,           KC_F3,           KC_F4,        KC_F5,          LGUI(KC_TILDE),
-  UP_ARROW,        AND_EQUALS,   FORWARD_PIPE,    AND_AND,         SINGLE_ARROW, NOT_EQUALS,     _x_,
-  UNICODE(0x27A1), PLUS_EQUALS,  KC_PIPE,         OR_EQUALS,       HASH_ROCKET,  EQUALS_EQUALS,
-  DOWN_ARROW,      MINUS_EQUALS, BACKWARD_PIPE,   OR_OR,           SPERMY,       MATCH_OPERATOR, ___,
-  KC_ESC,          DOUBLE_COLON, INCLUSIVE_RANGE, EXCLUSIVE_RANGE, ___,
-                                                                                 ___,            ___,
-                                                                                                 ENG,
-                                                                   MONOSNAP,     SGUI(KC_5),     JPN,
+  RESET,       KC_F1,        KC_F2,           KC_F3,           KC_F4,        KC_F5,          LGUI(KC_TILDE),
+  UP_ARROW,    AND_EQUALS,   FORWARD_PIPE,    AND_AND,         SINGLE_ARROW, NOT_EQUALS,     _x_,
+  RIGHT_ARROW, PLUS_EQUALS,  KC_PIPE,         OR_EQUALS,       HASH_ROCKET,  EQUALS_EQUALS,
+  DOWN_ARROW,  MINUS_EQUALS, BACKWARD_PIPE,   OR_OR,           SPERMY,       MATCH_OPERATOR, ___,
+  KC_ESC,      DOUBLE_COLON, INCLUSIVE_RANGE, EXCLUSIVE_RANGE, ___,
+                                                                             ___,            ___,
+                                                                                             ENG,
+                                                               MONOSNAP,     SGUI(KC_5),     JPN,
   // right hand
   KC_F12, KC_F6,     KC_F7,          KC_F8,                KC_F9,     KC_F10,    KC_F11,
   _x_,    KC_PGUP,   KC_LBRACKET,    KC_LEFT_CURLY_BRACE,  LEFT_ERB,  COFFEE,    TROLL,
@@ -387,8 +387,7 @@ void matrix_init_user(void) {
     rgblight_mode(0);
     rgblight_init();
     // NOTE: "GeminiPR" is a stenography protocol that I've chosen to use when
-    // communicating with Plover. The other option was "TX Bolt", but that
-    // seemed to result in extraneous keystrokes and other strange behaviour.
+    // communicating with Plover. The other option was "TX Bolt".
     // Although QMK says TX Bolt is the "default" protocol, it is an older
     // protocol than GeminiPR.
     // More information in the QMK docs:
