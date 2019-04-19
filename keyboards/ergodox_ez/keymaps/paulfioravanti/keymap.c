@@ -332,7 +332,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
       case RIGHT_ARROW:
         // SEND_STRING(SS_LALT("27A1"));
-        // UNICODE(0x000027A1);
         SEND_STRING(":arrow_right:");
         return false;
       case RIGHT_ERB:
