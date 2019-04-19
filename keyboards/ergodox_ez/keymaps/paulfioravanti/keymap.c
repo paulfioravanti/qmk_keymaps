@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| MO   |  | MO   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  | CODER|  | CODER|   N  |   M  |  ,<  |  .>  |  /?  | RShift |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   |acuAct|grvAct| LCmd |divvy |alfred|                              |LPane |RPane |UPane |DPane | RCmd |
+ *   |acuAct|grvAct| LCmd |divvy |alfred|                              |LPane |RPane |UPane |DPane |LCmd~ |
  *   `----------------------------------'                              `----------------------------------'
  *                                      ,-------------.  ,-------------.
  *                                      | LCmd | LAlt |  | RAlt | RCmd |
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   MO(MEDIA), KC_Y,    KC_U,      KC_I,       KC_O,    KC_P,      KC_QUOTE,
              KC_H,    KC_J,      KC_K,       KC_L,    KC_SCOLON, RCTL_T(KC_ESC),
   MO(CODER), KC_N,    KC_M,      KC_COMMA,   KC_DOT,  KC_SLSH,   KC_RSHIFT,
-                      LEFT_PANE, RIGHT_PANE, UP_PANE, DOWN_PANE, KC_RGUI,
+                      LEFT_PANE, RIGHT_PANE, UP_PANE, DOWN_PANE, LGUI(KC_TILDE),
   KC_LALT,   KC_RGUI,
   KC_PGUP,
   KC_PGDOWN, KC_ENTER, KC_SPACE
