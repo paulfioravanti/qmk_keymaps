@@ -9,3 +9,5 @@ FORCE_NKRO = yes
 # Remove some in the rules.mk file.
 # (MOUSEKEY, EXTRAKEY, CONSOLE, NKRO, MIDI, SERIAL, STENO)"`
 MOUSEKEY_ENABLE = no
+# Needed for QWERTY chord layer
+COMBO_ENABLE = yes

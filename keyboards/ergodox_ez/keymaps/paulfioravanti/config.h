@@ -31,3 +31,7 @@
 // Reference for why this line needs to be here:
 // https://github.com/qmk/qmk_firmware/issues/1695#issuecomment-328346224
 #define FORCE_NKRO
+
+// Define number of combos used in keymap. Must be equal to the
+// length of the combos enum list in keymap.c
+#define COMBO_COUNT 10

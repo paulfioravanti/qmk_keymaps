@@ -8,7 +8,8 @@
 #define BASE 0 // Default layer
 #define CODER 1 // Coder layer
 #define MEDIA 2 // Media keys
-#define STEN 3 // Stenography layer
+#define STENO 3 // Stenography layer
+#define CHORD 4 // Chorded QWERTY layer
 
 // Helpers to make keymaps a bit easier to read at a glance
 #define ___ KC_TRNS
@@ -56,13 +57,52 @@ enum custom_keycodes {
   WINK
 };
 
+// Combos for chorded QWERTY
+// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md
+enum combos {
+  QZ_A,
+  WX_S,
+  EC_D,
+  RV_F,
+  TB_G,
+  YN_H,
+  UM_J,
+  ICOMMA_K,
+  ODOT_L,
+  PSLASH_SCOLON
+};
+
+const uint16_t PROGMEM qz_combo[] = {KC_Q, KC_Z, COMBO_END};
+const uint16_t PROGMEM wx_combo[] = {KC_W, KC_X, COMBO_END};
+const uint16_t PROGMEM ec_combo[] = {KC_E, KC_C, COMBO_END};
+const uint16_t PROGMEM rv_combo[] = {KC_R, KC_V, COMBO_END};
+const uint16_t PROGMEM tb_combo[] = {KC_T, KC_B, COMBO_END};
+const uint16_t PROGMEM yn_combo[] = {KC_Y, KC_N, COMBO_END};
+const uint16_t PROGMEM um_combo[] = {KC_U, KC_M, COMBO_END};
+const uint16_t PROGMEM icomma_combo[] = {KC_I, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM odot_combo[] = {KC_O, KC_DOT, COMBO_END};
+const uint16_t PROGMEM pslash_combo[] = {KC_P, KC_SLASH, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [QZ_A] = COMBO(qz_combo, KC_A),
+  [WX_S] = COMBO(wx_combo, KC_S),
+  [EC_D] = COMBO(ec_combo, KC_D),
+  [RV_F] = COMBO(rv_combo, KC_F),
+  [TB_G] = COMBO(tb_combo, KC_G),
+  [YN_H] = COMBO(yn_combo, KC_H),
+  [UM_J] = COMBO(um_combo, KC_J),
+  [ICOMMA_K] = COMBO(icomma_combo, KC_K),
+  [ODOT_L] = COMBO(odot_combo, KC_L),
+  [PSLASH_SCOLON] = COMBO(pslash_combo, KC_SCOLON),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Qwerty layer
  * ,--------------------------------------------------.  ,--------------------------------------------------.
- * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  | STEN |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
+ * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  |STENO |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  | MO   |  | MO   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
- * |--------+------+------+------+------+------| MEDIA|  | MEDIA|------+------+------+------+------+--------|
+ * |  Tab   |   Q  |   W  |   E  |   R  |   T  | MO   |  | TG   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
+ * |--------+------+------+------+------+------| MEDIA|  | CHORD|------+------+------+------+------+--------|
  * |CTRL/ESC|   A  |   S  |   D  |   F  |   G  |------|  |------|   H  |   J  |   K  |   L  |  ;:  |CTRL/ESC|
  * |--------+------+------+------+------+------| MO   |  | MO   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  | CODER|  | CODER|   N  |   M  |  ,<  |  .>  |  /?  | RShift |
@@ -79,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TG(STEN),
+  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TG(STENO),
   KC_TAB,         KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,      MO(MEDIA),
   LCTL_T(KC_ESC), KC_A,         KC_S,     KC_D,           KC_F,           KC_G,
   KC_LSHIFT,      KC_Z,         KC_X,     KC_C,           KC_V,           KC_B,      MO(CODER),
@@ -89,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                           KC_BSPACE,      KC_DELETE, KC_END,
   // right hand
   KC_EQUAL,  KC_6,    KC_7,      KC_8,       KC_9,    KC_0,      KC_MINUS,
-  MO(MEDIA), KC_Y,    KC_U,      KC_I,       KC_O,    KC_P,      KC_QUOTE,
+  TG(CHORD), KC_Y,    KC_U,      KC_I,       KC_O,    KC_P,      KC_QUOTE,
              KC_H,    KC_J,      KC_K,       KC_L,    KC_SCOLON, RCTL_T(KC_ESC),
   MO(CODER), KC_N,    KC_M,      KC_COMMA,   KC_DOT,  KC_SLSH,   KC_RSHIFT,
                       LEFT_PANE, RIGHT_PANE, UP_PANE, DOWN_PANE, LGUI(KC_TILDE),
@@ -145,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |   [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x] |  | [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x]   |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
  * |   [x]  |  [x] |  [x] | MsUp |  [x] |  [x] |      |  |      |  [x] |  [x] |  [x] |  [x] |  [x] |  [x]   |
- * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|      |  | [x]  |------+------+------+------+------+--------|
  * |   [x]  |  [x] |MsLeft|MsDown|MsRght|  [x] |------|  |------|MsLeft|MsDown| MsUp |MsRght|  [x] |  Play  |
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
  * |   [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x] |  | [x]  |  [x] |  [x] | Prev | Next |  [x] |  [x]   |
@@ -203,7 +243,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                               |      |      |  [x] |  | [x]  |      |      |
  *                               `--------------------'  `--------------------'
  */
-[STEN] = LAYOUT_ergodox(  // layer 3 : Stenography
+[STENO] = LAYOUT_ergodox(  // layer 3 : Stenography
   // left hand
   KC_BSPC, _x_,    _x_,    _x_,    _x_,    _x_,     ___,
   ___,     STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  _x_,
@@ -223,6 +263,46 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _x_, _x_,
   _x_,
   _x_, STN_E,   STN_U
+),
+/* Keymap 4: Chorded Qwerty layer
+ * ,--------------------------------------------------.  ,--------------------------------------------------.
+ * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  |  [x] |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
+ * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
+ * |  Tab   |  1!  |  2@  |  3#  |  4$  |  5%  |      |  |      |  6^  |  7&  |  8*  |  9(  |  0)  |  ' "   |
+ * |--------+------+------+------+------+------|  [x] |  |      |------+------+------+------+------+--------|
+ * |CTRL/ESC|   Q  |   W  |   E  |   R  |   T  |------|  |------|   Y  |   U  |   I  |   O  |   P  |CTRL/ESC|
+ * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |  [x] |  |  [x] |   N  |   M  |  ,<  |  .>  |  /?  | RShift |
+ * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
+ *   |acuAct|grvAct| LCmd |divvy |alfred|                              |LPane |RPane |UPane |DPane |LCmd~ |
+ *   `----------------------------------'                              `----------------------------------'
+ *                                      ,-------------.  ,-------------.
+ *                                      | LCmd | LAlt |  | RAlt | RCmd |
+ *                               ,------|------|------|  |------+------+------.
+ *                               |      |      | home |  | pageU|      |      |
+ *                               |BSPACE|DELETE|------|  |------| ENTER| SPACE|
+ *                               |      |      | end  |  | pageD|      |      |
+ *                               `--------------------'  `--------------------'
+ */
+[CHORD] = LAYOUT_ergodox( // Layer 4: Chorded QWERTY
+  // left hand
+  KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      _x_,
+  KC_TAB,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      _x_,
+  LCTL_T(KC_ESC), KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,
+  KC_LSHIFT,      KC_Z,         KC_X,     KC_C,           KC_V,           KC_B,      _x_,
+  LALT(KC_E),     LALT(KC_GRV), KC_LGUI,  SGUI(KC_SPACE), LALT(KC_SPACE),
+                                                                          KC_LGUI,   KC_LALT,
+                                                                                     KC_HOME,
+                                                          KC_BSPACE,      KC_DELETE, KC_END,
+  // right hand
+  KC_EQUAL,  KC_6,    KC_7,      KC_8,       KC_9,    KC_0,      KC_MINUS,
+  ___,       KC_6,    KC_7,      KC_8,       KC_9,    KC_0,      KC_QUOTE,
+             KC_Y,    KC_U,      KC_I,       KC_O,    KC_P,      RCTL_T(KC_ESC),
+  _x_,       KC_N,    KC_M,      KC_COMMA,   KC_DOT,  KC_SLSH,   KC_RSHIFT,
+                      LEFT_PANE, RIGHT_PANE, UP_PANE, DOWN_PANE, LGUI(KC_TILDE),
+  KC_LALT,   KC_RGUI,
+  KC_PGUP,
+  KC_PGDOWN, KC_ENTER, KC_SPACE
 )
 };
 
