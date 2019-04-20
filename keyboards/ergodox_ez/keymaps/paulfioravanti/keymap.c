@@ -40,6 +40,7 @@ enum custom_keycodes {
   MONOSNAP,
   NEUTRAL,
   NOT_EQUALS,
+  NUM,
   OR_EQUALS,
   OR_OR,
   PLUS_EQUALS,
@@ -69,7 +70,17 @@ enum combos {
   UM_J,
   ICOMMA_K,
   ODOT_L,
-  PSLASH_SCOLON
+  PSLASH_SCOLON,
+  NUMQ_1,
+  NUMW_2,
+  NUME_3,
+  NUMR_4,
+  NUMBSPACE_5,
+  NUMU_6,
+  NUMI_7,
+  NUMO_8,
+  NUMP_9,
+  NUMDELETE_0
 };
 
 const uint16_t PROGMEM qz_combo[] = {KC_Q, KC_Z, COMBO_END};
@@ -82,6 +93,16 @@ const uint16_t PROGMEM um_combo[] = {KC_U, KC_M, COMBO_END};
 const uint16_t PROGMEM icomma_combo[] = {KC_I, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM odot_combo[] = {KC_O, KC_DOT, COMBO_END};
 const uint16_t PROGMEM pslash_combo[] = {KC_P, KC_SLASH, COMBO_END};
+const uint16_t PROGMEM numq_combo[] = {NUM, KC_Q, COMBO_END};
+const uint16_t PROGMEM numw_combo[] = {NUM, KC_W, COMBO_END};
+const uint16_t PROGMEM nume_combo[] = {NUM, KC_E, COMBO_END};
+const uint16_t PROGMEM numr_combo[] = {NUM, KC_R, COMBO_END};
+const uint16_t PROGMEM numbspace_combo[] = {NUM, KC_BSPACE, COMBO_END};
+const uint16_t PROGMEM numu_combo[] = {NUM, KC_U, COMBO_END};
+const uint16_t PROGMEM numi_combo[] = {NUM, KC_I, COMBO_END};
+const uint16_t PROGMEM numo_combo[] = {NUM, KC_O, COMBO_END};
+const uint16_t PROGMEM nump_combo[] = {NUM, KC_P, COMBO_END};
+const uint16_t PROGMEM numdelete_combo[] = {NUM, KC_DELETE, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [QZ_A] = COMBO(qz_combo, KC_A),
@@ -94,6 +115,16 @@ combo_t key_combos[COMBO_COUNT] = {
   [ICOMMA_K] = COMBO(icomma_combo, KC_K),
   [ODOT_L] = COMBO(odot_combo, KC_L),
   [PSLASH_SCOLON] = COMBO(pslash_combo, KC_SCOLON),
+  [NUMQ_1] = COMBO(numq_combo, KC_1),
+  [NUMW_2] = COMBO(numw_combo, KC_2),
+  [NUME_3] = COMBO(nume_combo, KC_3),
+  [NUMR_4] = COMBO(numr_combo, KC_4),
+  [NUMBSPACE_5] = COMBO(numbspace_combo, KC_5),
+  [NUMU_6] = COMBO(numu_combo, KC_6),
+  [NUMI_7] = COMBO(numi_combo, KC_7),
+  [NUMO_8] = COMBO(numo_combo, KC_8),
+  [NUMP_9] = COMBO(nump_combo, KC_9),
+  [NUMDELETE_0] = COMBO(numdelete_combo, KC_0)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -268,7 +299,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  |  [x] |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |  Tab   |  1!  |  2@  |  3#  |  4$  |  5%  |      |  |      |  6^  |  7&  |  8*  |  9(  |  0)  |  ' "   |
+ * |  Tab   | NUM  | NUM  | NUM  | NUM  | NUM  |      |  |      | NUM  | NUM  | NUM  | NUM  | NUM  |  ' "   |
  * |--------+------+------+------+------+------|  [x] |  |      |------+------+------+------+------+--------|
  * |CTRL/ESC|   Q  |   W  |   E  |   R  |   T  |------|  |------|   Y  |   U  |   I  |   O  |   P  |CTRL/ESC|
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
@@ -287,7 +318,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [CHORD] = LAYOUT_ergodox( // Layer 4: Chorded QWERTY
   // left hand
   KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      _x_,
-  KC_TAB,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      _x_,
+  KC_TAB,         NUM,          NUM,      NUM,            NUM,            NUM,       _x_,
   LCTL_T(KC_ESC), KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,
   KC_LSHIFT,      KC_Z,         KC_X,     KC_C,           KC_V,           KC_B,      _x_,
   LALT(KC_E),     LALT(KC_GRV), KC_LGUI,  SGUI(KC_SPACE), LALT(KC_SPACE),
@@ -296,7 +327,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                           KC_BSPACE,      KC_DELETE, KC_END,
   // right hand
   KC_EQUAL,  KC_6,    KC_7,      KC_8,       KC_9,    KC_0,      KC_MINUS,
-  ___,       KC_6,    KC_7,      KC_8,       KC_9,    KC_0,      KC_QUOTE,
+  ___,       NUM,     NUM,       NUM,        NUM,     NUM,       KC_QUOTE,
              KC_Y,    KC_U,      KC_I,       KC_O,    KC_P,      RCTL_T(KC_ESC),
   _x_,       KC_N,    KC_M,      KC_COMMA,   KC_DOT,  KC_SLSH,   KC_RSHIFT,
                       LEFT_PANE, RIGHT_PANE, UP_PANE, DOWN_PANE, LGUI(KC_TILDE),

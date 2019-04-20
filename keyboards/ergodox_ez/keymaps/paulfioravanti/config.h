@@ -34,4 +34,4 @@
 
 // Define number of combos used in keymap. Must be equal to the
 // length of the combos enum list in keymap.c
-#define COMBO_COUNT 10
+#define COMBO_COUNT 20
