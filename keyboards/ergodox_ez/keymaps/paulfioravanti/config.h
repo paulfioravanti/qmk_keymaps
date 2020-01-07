@@ -13,8 +13,10 @@
  * this is more directly exposed.
  */
 // Default: 15
+// REF for keystroke repeating issue:
+// https://github.com/qmk/qmk_firmware/issues/910
 #undef DEBOUNCE
-#define DEBOUNCE 5
+#define DEBOUNCE 3
 
 // tap anyway, even after TAPPING_TERM, if there was no other key
 // interruption between press and release
