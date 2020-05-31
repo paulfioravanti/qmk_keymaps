@@ -8,8 +8,24 @@ further customised it from there.
 
 ## Dependencies
 
-In order to install compiled firmware on to the ErgoDox, install the
-[Teensy Loader for Mac OS][]:
+In order to install compiled firmware on to the ErgoDox, you can use either
+of the following thick clients (I use [Homebrew Cask][] for this):
+
+1. [Wally][] (recommended)
+
+Install [libusb][] development dependency:
+
+```sh
+brew install libusb
+```
+
+Install Wally itself:
+
+```sh
+brew cask install zsa-wally
+```
+
+2. [Teensy Loader for Mac OS][]:
 
 ```sh
 brew cask install teensy
@@ -20,7 +36,7 @@ brew cask install teensy
 ```sh
 cp -r qmk_keymaps/keyboards/ergodox_ez/keymaps/paulfioravanti qmk_firmware/keyboards/ergodox_ez/keymaps
 cd qmk_firmware
-make ergodox_ez:paulfioravanti
+qmk compile -kb ergodox_ez -km paulfioravanti
 ```
 
 This should result in an `ergodox_ez_paulfioravanti.hex` file being generated
@@ -70,8 +86,7 @@ Then, configure it in the following way:
 
 ## Flash Firmware
 
-Follow instructions (and watch video) on the
-[ErgoDox EZ Graphical Configurator page][].
+Open up Wally or Teensy Loader and follow their instructions.
 
 ## Blog Posts
 
@@ -82,9 +97,10 @@ posts:
 - [Starting Stenography with an Ergodox][]
 
 [`config.h`]: config.h
-[ErgoDox EZ Graphical Configurator page]: https://ergodox-ez.com/pages/graphical-configurator
 [Escape the defaults and Control your keyboard with QMK]: https://paulfioravanti.com/blog/2018/07/31/escape-the-defaults-and-control-your-keyboard-with-qmk/
+[Homebrew Cask]: https://github.com/Homebrew/homebrew-cask
 [`keymap.c`]: keymap.c
+[libusb]: https://libusb.info/
 [my original ErgoDox Firmware configuration]: https://github.com/paulfioravanti/ergodox-firmware/blob/custom-layout/firmware/keyboard/ergodox/layout/custom-layout.c
 [n-key rollover]: https://en.wikipedia.org/wiki/Rollover_(key)#n-key_rollover
 [NKRO doesn't work with ergodox ez]: https://github.com/qmk/qmk_firmware/issues/1695
@@ -94,3 +110,4 @@ posts:
 [Starting Stenography with an Ergodox]: https://paulfioravanti.com/blog/2018/10/18/starting-stenography-with-an-ergodox/
 [Stenography in QMK]: https://github.com/qmk/qmk_firmware/blob/master/docs/feature_stenography.md#configuring-qmk-for-steno
 [Teensy Loader for Mac OS]: https://pjrc.com/teensy/loader_mac.html
+[Wally]: https://ergodox-ez.com/pages/wally

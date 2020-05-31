@@ -4,127 +4,25 @@
 #include "version.h"
 // For stenography
 #include "keymap_steno.h"
+// Custom files
+#include "./keycodes/custom_keycodes.c"
+#include "./keycodes/process_record_user.c"
+#include "./combos.c"
+#include "./user/layer_state_set_user.c"
+#include "./user/keyboard_post_init_user.c"
 
-#define BASE 0 // Default layer
-#define CODER 1 // Coder layer
-#define MEDIA 2 // Media keys
-#define STENO 3 // Stenography layer
-#define CHORD 4 // Chorded QWERTY layer
+enum layers {
+  BASE, // Default layer
+  CODER, // Coder layer
+  MEDIA, // Media keys
+  STENO, // Stenography layer
+  CHORD // Chorded QWERTY layer
+};
 
 // Helpers to make keymaps a bit easier to read at a glance
-#define ___ KC_TRNS
-#define _x_ KC_NO
-
-enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE, // can always be here
-  AND_AND,
-  AND_EQUALS,
-  BACKWARD_PIPE,
-  COFFEE,
-  DOUBLE_COLON,
-  DOWN_ARROW,
-  DOWN_PANE,
-  ENG,
-  EQUALS_EQUALS,
-  EXCLUSIVE_RANGE,
-  FORWARD_PIPE,
-  HASH_ROCKET,
-  INCLUSIVE_RANGE,
-  JPN,
-  LAUGH,
-  LEFT_ERB,
-  LEFT_PANE,
-  MATCH_OPERATOR,
-  MINUS_EQUALS,
-  MINUS_ONE,
-  MONOSNAP,
-  NEUTRAL,
-  NOT_EQUALS,
-  NUM,
-  OR_EQUALS,
-  OR_OR,
-  PLUS_EQUALS,
-  PLUS_ONE,
-  RIGHT_ARROW,
-  RIGHT_ERB,
-  RIGHT_PANE,
-  SAD,
-  SINGLE_ARROW,
-  SMILE,
-  SPERMY,
-  TROLL,
-  UP_ARROW,
-  UP_PANE,
-  WINK
-};
-
-// Combos for chorded QWERTY
-// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md
-enum combos {
-  QZ_A,
-  WX_S,
-  EC_D,
-  RV_F,
-  TB_G,
-  YN_H,
-  UM_J,
-  ICOMMA_K,
-  ODOT_L,
-  PSLASH_SCOLON,
-  NUMQ_1,
-  NUMW_2,
-  NUME_3,
-  NUMR_4,
-  NUMBSPACE_5,
-  NUMU_6,
-  NUMI_7,
-  NUMO_8,
-  NUMP_9,
-  NUMDELETE_0
-};
-
-const uint16_t PROGMEM qz_combo[] = {KC_Q, KC_Z, COMBO_END};
-const uint16_t PROGMEM wx_combo[] = {KC_W, KC_X, COMBO_END};
-const uint16_t PROGMEM ec_combo[] = {KC_E, KC_C, COMBO_END};
-const uint16_t PROGMEM rv_combo[] = {KC_R, KC_V, COMBO_END};
-const uint16_t PROGMEM tb_combo[] = {KC_T, KC_B, COMBO_END};
-const uint16_t PROGMEM yn_combo[] = {KC_Y, KC_N, COMBO_END};
-const uint16_t PROGMEM um_combo[] = {KC_U, KC_M, COMBO_END};
-const uint16_t PROGMEM icomma_combo[] = {KC_I, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM odot_combo[] = {KC_O, KC_DOT, COMBO_END};
-const uint16_t PROGMEM pslash_combo[] = {KC_P, KC_SLASH, COMBO_END};
-const uint16_t PROGMEM numq_combo[] = {NUM, KC_Q, COMBO_END};
-const uint16_t PROGMEM numw_combo[] = {NUM, KC_W, COMBO_END};
-const uint16_t PROGMEM nume_combo[] = {NUM, KC_E, COMBO_END};
-const uint16_t PROGMEM numr_combo[] = {NUM, KC_R, COMBO_END};
-const uint16_t PROGMEM numbspace_combo[] = {NUM, KC_BSPACE, COMBO_END};
-const uint16_t PROGMEM numu_combo[] = {NUM, KC_U, COMBO_END};
-const uint16_t PROGMEM numi_combo[] = {NUM, KC_I, COMBO_END};
-const uint16_t PROGMEM numo_combo[] = {NUM, KC_O, COMBO_END};
-const uint16_t PROGMEM nump_combo[] = {NUM, KC_P, COMBO_END};
-const uint16_t PROGMEM numdelete_combo[] = {NUM, KC_DELETE, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-  [QZ_A] = COMBO(qz_combo, KC_A),
-  [WX_S] = COMBO(wx_combo, KC_S),
-  [EC_D] = COMBO(ec_combo, KC_D),
-  [RV_F] = COMBO(rv_combo, KC_F),
-  [TB_G] = COMBO(tb_combo, KC_G),
-  [YN_H] = COMBO(yn_combo, KC_H),
-  [UM_J] = COMBO(um_combo, KC_J),
-  [ICOMMA_K] = COMBO(icomma_combo, KC_K),
-  [ODOT_L] = COMBO(odot_combo, KC_L),
-  [PSLASH_SCOLON] = COMBO(pslash_combo, KC_SCOLON),
-  [NUMQ_1] = COMBO(numq_combo, KC_1),
-  [NUMW_2] = COMBO(numw_combo, KC_2),
-  [NUME_3] = COMBO(nume_combo, KC_3),
-  [NUMR_4] = COMBO(numr_combo, KC_4),
-  [NUMBSPACE_5] = COMBO(numbspace_combo, KC_5),
-  [NUMU_6] = COMBO(numu_combo, KC_6),
-  [NUMI_7] = COMBO(numi_combo, KC_7),
-  [NUMO_8] = COMBO(numo_combo, KC_8),
-  [NUMP_9] = COMBO(nump_combo, KC_9),
-  [NUMDELETE_0] = COMBO(numdelete_combo, KC_0)
+enum helpers {
+  ___ = KC_TRNS,
+  _x_ = KC_NO
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -169,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_PGDOWN, KC_ENTER, KC_SPACE
 ),
 
-/* Keymap 1: Programmer's toolkit layer
+/* Keymap 1: Programmer's toolkit layer (see keycodes/custom_keycodes.c)
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * | RESET  |  F1  |  F2  |  F3  |  F4  |  F5  | LCmd~|  | F12  |  F6  |  F7  |  F8  |  F9  | F10  |  F11   |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
@@ -179,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
  * |DN_ARROW|  -=  |  <|  |  ||  |  ~>  |  =~  |      |  |      |pageD |   ]  |  }   |  %>  |   \  |  -1    |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   | esc  |  ::  |  ..  |  ... |      |                              |LAUGH |SMILE | WINK |NEUTRL|  SAD |
+ *   | esc  |  ::  |  ..  |  ... | VRSN |                              |LAUGH |SMILE | WINK |NEUTRL|  SAD |
  *   `----------------------------------'                              `----------------------------------'
  *                                      ,-------------.  ,---------------.
  *                                      |      |      |  |volumeD|volumeU|
@@ -195,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   UP_ARROW,    AND_EQUALS,   FORWARD_PIPE,    AND_AND,         SINGLE_ARROW, NOT_EQUALS,     _x_,
   RIGHT_ARROW, PLUS_EQUALS,  KC_PIPE,         OR_EQUALS,       HASH_ROCKET,  EQUALS_EQUALS,
   DOWN_ARROW,  MINUS_EQUALS, BACKWARD_PIPE,   OR_OR,           SPERMY,       MATCH_OPERATOR, ___,
-  KC_ESC,      DOUBLE_COLON, INCLUSIVE_RANGE, EXCLUSIVE_RANGE, ___,
+  KC_ESC,      DOUBLE_COLON, INCLUSIVE_RANGE, EXCLUSIVE_RANGE, VRSN,
                                                                              ___,            ___,
                                                                                              ENG,
                                                                MONOSNAP,     SGUI(KC_5),     JPN,
@@ -211,7 +109,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* Keymap 2: Media and mouse keys
- *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * |   [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x] |  | [x]  |  [x] |  [x] |  [x] |  [x] |  [x] |  [x]   |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
@@ -231,7 +128,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                               |      |      |  [x] |  | [x]  |      |      |
  *                               `--------------------'  `--------------------'
  */
-// MEDIA AND MOUSE
 [MEDIA] = LAYOUT_ergodox(
   // left hand
   _x_, _x_, _x_,     _x_,     _x_,     _x_, _x_,
@@ -254,7 +150,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* Keymap 3: Stenography
- *
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * | BSPACE |  [x] |  [x] |  [x] |  [x] |  [x] |      |  | [x]  |  [x] |  [x] |  [x] |  [x] |  [x] | SPACE  |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
@@ -274,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                               |      |      |  [x] |  | [x]  |      |      |
  *                               `--------------------'  `--------------------'
  */
-[STENO] = LAYOUT_ergodox(  // layer 3 : Stenography
+[STENO] = LAYOUT_ergodox(
   // left hand
   KC_BSPC, _x_,    _x_,    _x_,    _x_,    _x_,     ___,
   ___,     STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  _x_,
@@ -295,7 +190,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _x_,
   _x_, STN_E,   STN_U
 ),
-/* Keymap 4: Chorded Qwerty layer
+/* Keymap 4: Chorded Qwerty layer (see combos.c)
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  |  [x] |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
@@ -315,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                               |      |      | end  |  | pageD|      |      |
  *                               `--------------------'  `--------------------'
  */
-[CHORD] = LAYOUT_ergodox( // Layer 4: Chorded QWERTY
+[CHORD] = LAYOUT_ergodox(
   // left hand
   KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      _x_,
   KC_TAB,         NUM,          NUM,      NUM,            NUM,            NUM,       _x_,
@@ -334,251 +229,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LALT,   KC_RGUI,
   KC_PGUP,
   KC_PGDOWN, KC_ENTER, KC_SPACE
-)
-};
-
-// NOTE: Sending Hex codes for Emojis involved needing to keep my
-// input source permanently on "Unicode Hex Input", which doesn't
-// seem to play well with Japanese IME, so Emojis will just have
-// to stay as Slack-style strings for now.
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    switch (keycode) {
-      case AND_AND:
-        SEND_STRING("&&");
-        return false;
-      case AND_EQUALS:
-        SEND_STRING("&&=");
-        return false;
-      case BACKWARD_PIPE:
-        SEND_STRING("<|");
-        return false;
-      case COFFEE:
-        // SEND_STRING(SS_LALT("2615"));
-        SEND_STRING(":coffee:");
-        return false;
-      case DOUBLE_COLON:
-        SEND_STRING("::");
-        return false;
-      case DOWN_ARROW:
-        // SEND_STRING(SS_LALT("2B07"));
-        SEND_STRING(":arrow_down:");
-        return false;
-      case DOWN_PANE:
-        SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
-        SEND_STRING(SS_TAP(X_DOWN));
-        SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
-        return false;
-      case ENG:
-        SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT));
-        SEND_STRING(SS_TAP(X_SCOLON));
-        SEND_STRING(SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
-        return false;
-      case EQUALS_EQUALS:
-        SEND_STRING("==");
-        return false;
-      case EXCLUSIVE_RANGE:
-        SEND_STRING("...");
-        return false;
-      case FORWARD_PIPE:
-        SEND_STRING("|>");
-        return false;
-      case HASH_ROCKET:
-        SEND_STRING("=>");
-        return false;
-      case INCLUSIVE_RANGE:
-        SEND_STRING("..");
-        return false;
-      case JPN:
-        SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT));
-        SEND_STRING(SS_TAP(X_J));
-        SEND_STRING(SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
-        return false;
-      case LAUGH:
-        // SEND_STRING(SS_LALT("D83D+DE02"));
-        SEND_STRING(":joy:");
-        return false;
-      case LEFT_ERB:
-        SEND_STRING("<%=");
-        return false;
-      case LEFT_PANE:
-        SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
-        SEND_STRING(SS_TAP(X_LEFT));
-        SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
-        return false;
-      case MATCH_OPERATOR:
-        SEND_STRING("=~");
-        return false;
-      case MINUS_EQUALS:
-        SEND_STRING("-=");
-        return false;
-      case MINUS_ONE:
-        // SEND_STRING(SS_LALT("D83D+DC4E"));
-        SEND_STRING(":-1:");
-        return false;
-      case MONOSNAP:
-        SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
-        SEND_STRING(SS_TAP(X_5));
-        SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
-        return false;
-      case NEUTRAL:
-        // SEND_STRING(SS_LALT("D83D+DE10"));
-        SEND_STRING(":neutral:");
-        return false;
-      case NOT_EQUALS:
-        SEND_STRING("!=");
-        return false;
-      case OR_EQUALS:
-        SEND_STRING("||=");
-        return false;
-      case OR_OR:
-        SEND_STRING("||");
-        return false;
-      case PLUS_EQUALS:
-        SEND_STRING("+=");
-        return false;
-      case PLUS_ONE:
-        // SEND_STRING(SS_LALT("D83D+DC4D"));
-        SEND_STRING(":+1:");
-        return false;
-      case RIGHT_ARROW:
-        // SEND_STRING(SS_LALT("27A1"));
-        SEND_STRING(":arrow_right:");
-        return false;
-      case RIGHT_ERB:
-        SEND_STRING("%>");
-        return false;
-      case RIGHT_PANE:
-        SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
-        SEND_STRING(SS_TAP(X_RIGHT));
-        SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
-        return false;
-      case SAD:
-        // SEND_STRING(SS_LALT("D83D+DE1E"));
-        SEND_STRING(":disappointed:");
-        return false;
-      case SINGLE_ARROW:
-        SEND_STRING("->");
-        return false;
-      case SMILE:
-        // SEND_STRING(SS_LALT("D83D+DE04"));
-        SEND_STRING(":smile:");
-        return false;
-      case SPERMY:
-        SEND_STRING("~>");
-        return false;
-      case TROLL:
-        SEND_STRING(":trollface:");
-        return false;
-      case UP_ARROW:
-        // SEND_STRING(SS_LALT("2B06"));
-        SEND_STRING(":arrow_up:");
-        return false;
-      case UP_PANE:
-        SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
-        SEND_STRING(SS_TAP(X_UP));
-        SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT));
-        return false;
-      case WINK:
-        // SEND_STRING(SS_LALT("D83D+DE09"));
-        SEND_STRING(":wink:");
-        return false;
-    }
-  }
-  return true;
-}
-
-// Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-    // Set Unicode mode to Mac OS. More information:
-    // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_unicode.md
-    set_unicode_input_mode(UC_OSX);
-    // Default all Ergodox EZ right-hand-side lights to be off.
-    rgblight_mode(0);
-    rgblight_init();
-    // NOTE: "GeminiPR" is a stenography protocol that I've chosen to use when
-    // communicating with Plover. The other option was "TX Bolt".
-    // Although QMK says TX Bolt is the "default" protocol, it is an older
-    // protocol than GeminiPR.
-    // More information in the QMK docs:
-    // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_stenography.md#plover-with-steno-protocol
-    steno_set_mode(STENO_MODE_GEMINI);
-};
-
-// Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
-
-};
-
-// Runs whenever there is a layer state change.
-// NOTE: Not all cases here will get used, but there's probably no harm
-// in keeping them here.
-uint32_t layer_state_set_user(uint32_t state) {
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
-
-  uint8_t layer = biton32(state);
-  switch (layer) {
-    case 0:
-      #ifdef RGBLIGHT_COLOR_LAYER_0
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
-      #else
-      #ifdef RGBLIGHT_ENABLE
-        rgblight_init();
-      #endif
-      #endif
-      break;
-    case 1:
-      ergodox_right_led_1_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_1
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_1);
-      #endif
-      break;
-    case 2:
-      ergodox_right_led_2_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_2
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_2);
-      #endif
-      break;
-    case 3:
-      ergodox_right_led_3_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_3
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_3);
-      #endif
-      break;
-    case 4:
-      ergodox_right_led_1_on();
-      ergodox_right_led_2_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_4
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_4);
-      #endif
-      break;
-    case 5:
-      ergodox_right_led_1_on();
-      ergodox_right_led_3_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_5
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_5);
-      #endif
-      break;
-    case 6:
-      ergodox_right_led_2_on();
-      ergodox_right_led_3_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_6
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_6);
-      #endif
-      break;
-    case 7:
-      ergodox_right_led_1_on();
-      ergodox_right_led_2_on();
-      ergodox_right_led_3_on();
-      #ifdef RGBLIGHT_COLOR_LAYER_7
-        rgblight_setrgb(RGBLIGHT_COLOR_LAYER_7);
-      #endif
-      break;
-    default:
-      break;
-  }
-  return state;
-}
+)};

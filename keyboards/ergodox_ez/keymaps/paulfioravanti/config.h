@@ -1,5 +1,7 @@
 #include "../../config.h"
 
+/* #define QMK_KEYS_PER_SCAN 8 */
+
 // https://docs.qmk.fm/reference/config-options
 //
 /* "debounce" is measured in keyboard scans. Some users reported
@@ -12,11 +14,9 @@
  * runs seeming to need it. This may change when configuration for
  * this is more directly exposed.
  */
-// Default: 15
-// REF for keystroke repeating issue:
-// https://github.com/qmk/qmk_firmware/issues/910
+// Default: 30 in keyboards/ergodox_ez/config.h
 #undef DEBOUNCE
-#define DEBOUNCE 3
+#define DEBOUNCE 15
 
 // tap anyway, even after TAPPING_TERM, if there was no other key
 // interruption between press and release
@@ -25,7 +25,7 @@
 // how long before a tap becomes a hold
 // Default: 200
 #undef TAPPING_TERM
-#define TAPPING_TERM 50
+#define TAPPING_TERM 100
 
 // Keep N-key rollover (NKRO) on by default
 // What is NKRO:
