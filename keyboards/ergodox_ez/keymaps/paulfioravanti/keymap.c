@@ -159,10 +159,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
  * |   [x]  |   S  |   K  |   W  |   R  |   *  |  [x] |  | [x]  |   *  |   R  |   B  |   G  |   s  |   Z    |
  * `--------+------+------+------+------+-------------'  `-------------+------+------+------+------+--------'
- *   | [x]  |  [x] |      |   A  |   O  |                              |   E  |   U  |  [x] |  [x] |  [x] |
+ *   | [x]  |  [x] |      |  [x] |   #  |                              |   #  |  [x] |  [x] |  [x] |  [x] |
  *   `----------------------------------'                              `----------------------------------'
  *                                      ,-------------.  ,-------------.
- *                                      |  [x] |  [x] |  | [x]  | [x]  |
+ *                                      |   #  |  [x] |  | [x]  |  #   |
  *                               ,------|------|------|  |------+------+------.
  *                               |      |      |  [x] |  | [x]  |      |      |
  *                               |  A   |   O  |------|  |------|  E   |  U   |
@@ -175,8 +175,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ___,     STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,  _x_,
   _x_,     STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1,
   _x_,     STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2, _x_,
-  _x_,     _x_,    ___,    STN_A,  STN_O,
-                                           _x_,     _x_,
+  _x_,     _x_,    ___,    _x_,    STN_NC,
+                                           STN_NC,  _x_,
                                                     _x_,
                                    STN_A,  STN_O,   _x_,
 
@@ -185,8 +185,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _x_, STN_N6,  STN_N7, STN_N8, STN_N9, STN_NA, STN_NB,
        STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
   _x_, STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
-                STN_E,  STN_U,  _x_,    _x_,    _x_,
-  _x_, _x_,
+                STN_NC, _x_,    _x_,    _x_,    _x_,
+  _x_, STN_NC,
   _x_,
   _x_, STN_E,   STN_U
 ),
