@@ -51,3 +51,4 @@ README file for details.
 [QMK Firmware]: https://qmk.fm/
 [QMK Keycodes]: https://docs.qmk.fm/#/keycodes
 [QMK Toolbox]: https://github.com/qmk/qmk_toolbox
+[Setting Up Your QMK Environment]: https://docs.qmk.fm/#/newbs_getting_started
