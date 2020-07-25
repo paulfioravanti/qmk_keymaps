@@ -52,6 +52,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case FORWARD_PIPE:
         SEND_STRING("|>");
         return false;
+      case GS_TIMESTAMP:
+        SEND_STRING(SS_DOWN(X_LGUI)SS_DOWN(X_LALT)SS_DOWN(X_LSHIFT));
+        SEND_STRING(SS_TAP(X_SCOLON));
+        SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LSHIFT));
+        return false;
       case HASH_ROCKET:
         SEND_STRING("=>");
         return false;
