@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.  ,--------------------------------------------------.
  * |  ~`    |  1!  |  2@  |  3#  |  4$  |  5%  |STENO |  |  +=  |  6^  |  7&  |  8*  |  9(  |  0)  |  -_    |
  * |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  | MO   |  | TG   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
+ * |  Tab   |   Q  |   W  |   E  |   R  |   T  | TG   |  | TG   |   Y  |   U  |   I  |   O  |   P  |  ' "   |
  * |--------+------+------+------+------+------| MEDIA|  | CHORD|------+------+------+------+------+--------|
  * |CTRL/ESC|   A  |   S  |   D  |   F  |   G  |------|  |------|   H  |   J  |   K  |   L  |  ;:  |CTRL/ESC|
  * |--------+------+------+------+------+------| MO   |  | MO   |------+------+------+------+------+--------|
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(
   // left hand
   KC_GRV,         KC_1,         KC_2,     KC_3,           KC_4,           KC_5,      TG(STENO),
-  KC_TAB,         KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,      MO(MEDIA),
+  KC_TAB,         KC_Q,         KC_W,     KC_E,           KC_R,           KC_T,      TG(MEDIA),
   LCTL_T(KC_ESC), KC_A,         KC_S,     KC_D,           KC_F,           KC_G,
   KC_LSHIFT,      KC_Z,         KC_X,     KC_C,           KC_V,           KC_B,      MO(CODER),
   LALT(KC_E),     LALT(KC_GRV), KC_LGUI,  SGUI(KC_SPACE), LALT(KC_SPACE),
