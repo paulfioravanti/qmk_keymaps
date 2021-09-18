@@ -2,6 +2,16 @@
 
 Custom keymaps I have made for mechanical keyboards running [QMK Firmware][].
 
+## Blog Post
+
+I wrote a blog post all about getting started with creating a QMK keyboard
+layout:
+
+_[Escape the defaults and Control your keyboard with QMK][]_
+
+Although it is quite [Ergodox][]-centric, I think there is still enough general
+QMK content in there to be of use if you use any other type of keyboard.
+
 ## Dependencies
 
 In order to create a build environment, I followed the instructions on the
@@ -35,14 +45,13 @@ README file for details.
 
 ## Handy Links
 
-- [Escape the defaults and Control your keyboard with QMK][] - A blog post I
-  wrote on getting started with creating a QMK layout
 - [QMK Keycodes][] - what keycodes are currently available to you
 - [QMK Config Options][] - Helps determine what can go in the `config.h` file
 - [QMK Customizing Functionality][] - how to define new keycodes and process
   them
 
-[Escape the defaults and Control your keyboard with QMK]: https://paulfioravanti.com/blog/2018/07/30/escape-the-defaults-and-control-your-keyboard-with-qmk/
+[Ergodox]: https://ergodox-ez.com/
+[Escape the defaults and Control your keyboard with QMK]: https://www.paulfioravanti.com/blog/escape-defaults-control-keyboard-qmk/
 [Homebrew]: https://brew.sh/
 [macOS build tools]: https://docs.qmk.fm/#/getting_started_build_tools?id=macos
 [QMK Config Options]: https://docs.qmk.fm/#/config_options
