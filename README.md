@@ -2,15 +2,19 @@
 
 Custom keymaps I have made for mechanical keyboards running [QMK Firmware][].
 
-## Blog Post
+## Blog Posts
 
 I wrote a blog post all about getting started with creating a QMK keyboard
-layout:
+layout. Although it is quite [Ergodox][]-centric, I think there is still enough
+general QMK content in there to be of use if you use any other type of keyboard:
 
-_[Escape the defaults and Control your keyboard with QMK][]_
+- _[Escape the defaults and Control your keyboard with QMK][]_
 
-Although it is quite [Ergodox][]-centric, I think there is still enough general
-QMK content in there to be of use if you use any other type of keyboard.
+The creation of the [`GS_TIMESTAMP`][] custom keycode, which inserts a current
+timestamp into a [Google Sheets][] cell, ended up being far more involved that
+I originally thought, so I wrote up a blog post about that:
+
+- _[All I want is a Timestamp][]_
 
 ## Dependencies
 
@@ -50,8 +54,11 @@ README file for details.
 - [QMK Customizing Functionality][] - how to define new keycodes and process
   them
 
+[All I want is a Timestamp]: https://www.paulfioravanti.com/blog/google-sheets-timestamp/
 [Ergodox]: https://ergodox-ez.com/
 [Escape the defaults and Control your keyboard with QMK]: https://www.paulfioravanti.com/blog/escape-defaults-control-keyboard-qmk/
+[Google Sheets]: https://www.google.com/sheets/about/
+[`GS_TIMESTAMP`]: https://github.com/paulfioravanti/qmk_keymaps/blob/master/keyboards/ergodox_ez/keymaps/paulfioravanti/keycodes/custom_keycodes.c#L19
 [Homebrew]: https://brew.sh/
 [macOS build tools]: https://docs.qmk.fm/#/getting_started_build_tools?id=macos
 [QMK Config Options]: https://docs.qmk.fm/#/config_options
