@@ -4,9 +4,6 @@ void keyboard_post_init_user(void) {
 #ifdef RGBLIGHT_COLOR_LAYER_0
   rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
 #endif
-  // Set Unicode mode to Mac OS. More information:
-  // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_unicode.md
-  set_unicode_input_mode(UC_OSX);
   // NOTE: "GeminiPR" is a stenography protocol that I've chosen to use when
   // communicating with Plover. The other option was "TX Bolt".
   // Although QMK says TX Bolt is the "default" protocol, it is an older

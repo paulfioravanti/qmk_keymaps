@@ -37,3 +37,7 @@
 // Define number of combos used in keymap. Must be equal to the
 // length of the combos enum list in keymap.c
 #define COMBO_COUNT 20
+
+// Set Unicode mode to Mac OS. More information:
+// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_unicode.md
+#define UNICODE_SELECTED_MODES UC_MAC

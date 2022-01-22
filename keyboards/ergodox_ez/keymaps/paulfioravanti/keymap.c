@@ -5,11 +5,10 @@
 // For stenography
 #include "keymap_steno.h"
 // Custom files
-#include "./keycodes/custom_keycodes.c"
-#include "./keycodes/process_record_user.c"
-#include "./combos.c"
 #include "./user/layer_state_set_user.c"
 #include "./user/keyboard_post_init_user.c"
+#include "./user/process_record_user.c"
+#include "./combos.c"
 
 enum layers {
   BASE, // Default layer

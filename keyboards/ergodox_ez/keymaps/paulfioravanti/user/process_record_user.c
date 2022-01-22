@@ -1,3 +1,52 @@
+enum custom_keycodes {
+#ifdef ORYX_CONFIGURATOR
+  VRSN = EZ_SAFE_RANGE,
+#else
+  VRSN = SAFE_RANGE,
+#endif
+  RGB_SLD,
+  AND_AND,
+  AND_EQUALS,
+  BACKWARD_PIPE,
+  COFFEE,
+  DOUBLE_COLON,
+  DOWN_ARROW,
+  DOWN_PANE,
+  ENG,
+  EQUALS_EQUALS,
+  EXCLUSIVE_RANGE,
+  FORWARD_PIPE,
+  GS_TIMESTAMP,
+  HASH_ROCKET,
+  INCLUSIVE_RANGE,
+  JPN,
+  LAUGH,
+  LEFT_ERB,
+  LEFT_PANE,
+  MATCH_OPERATOR,
+  MINUS_EQUALS,
+  MINUS_ONE,
+  MONOSNAP,
+  NEUTRAL,
+  NOT_EQUALS,
+  NUM,
+  OR_EQUALS,
+  OR_OR,
+  PLUS_EQUALS,
+  PLUS_ONE,
+  RIGHT_ARROW,
+  RIGHT_ERB,
+  RIGHT_PANE,
+  SAD,
+  SINGLE_ARROW,
+  SMILE,
+  SPERMY,
+  TROLL,
+  UP_ARROW,
+  UP_PANE,
+  WINK
+};
+
 // NOTE: Sending Hex codes for Emojis involved needing to keep my
 // input source permanently on "Unicode Hex Input", which doesn't
 // seem to play well with Japanese IME, so Emojis will just have
