@@ -39,7 +39,7 @@ make git-submodule
 qmk compile -kb ergodox_ez -km paulfioravanti
 ```
 
-This should result in an `ergodox_ez_paulfioravanti.hex` file being generated
+This should result in a `ergodox_ez_paulfioravanti.hex` file being generated
 in the `qmk_firmware` root directory.
 
 ## N-key Rollover
