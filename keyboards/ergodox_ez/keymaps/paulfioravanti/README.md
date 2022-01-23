@@ -34,8 +34,8 @@ brew cask install teensy
 ## Compile
 
 ```sh
-cp -r qmk_keymaps/keyboards/ergodox_ez/keymaps/paulfioravanti qmk_firmware/keyboards/ergodox_ez/keymaps
 cd qmk_firmware
+make git-submodule
 qmk compile -kb ergodox_ez -km paulfioravanti
 ```
 

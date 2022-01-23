@@ -37,9 +37,28 @@ git clone git@github.com:qmk/qmk_firmware.git
 git clone git@github.com:paulfioravanti/qmk_keymaps.git
 ```
 
-Then, copy the relevant keymap folder from the `qmk_keymaps` directory
-into the `qmk_firmware` directory, and compile the firmware. Details about
-compilation/setup are on the `README` page for the specific keymap layout.
+### Copy Keymaps
+
+Use [rsync][] to merge the `keyboards` directory into the QMK Firmware
+repository's `keyboards` directory:
+
+```sh
+rsync --recursive qmk_keymaps/keyboards/ qmk_firmware/keyboards/
+```
+
+### Copy Steno Firmware Overrides
+
+If you plan to use the stenography firmware overrides that allow you to
+auto-repeat chords, or hold down common keys between chords (thanks to
+[Joshua Grams][] for putting up the code for this in his [steno-firmware][]
+repo!), then merge over the contents in the `quantum` directory as well:
+
+```sh
+rsync --recursive qmk_keymaps/quantum/ qmk_firmware/quantum/
+```
+
+Details about firmware compilation and setup are on the `README` page for the
+specific keymap layout.
 
 ## Flashing Firmware
 
@@ -60,6 +79,7 @@ README file for details.
 [Google Sheets]: https://www.google.com/sheets/about/
 [`GS_TIMESTAMP`]: https://github.com/paulfioravanti/qmk_keymaps/blob/master/keyboards/ergodox_ez/keymaps/paulfioravanti/keycodes/custom_keycodes.c#L19
 [Homebrew]: https://brew.sh/
+[Joshua Grams]: https://github.com/JoshuaGrams
 [macOS build tools]: https://docs.qmk.fm/#/getting_started_build_tools?id=macos
 [QMK Config Options]: https://docs.qmk.fm/#/config_options
 [QMK Customizing Functionality]: https://docs.qmk.fm/#/custom_quantum_functions
@@ -67,4 +87,6 @@ README file for details.
 [QMK Firmware]: https://qmk.fm/
 [QMK Keycodes]: https://docs.qmk.fm/#/keycodes
 [QMK Toolbox]: https://github.com/qmk/qmk_toolbox
+[rsync]: http://en.wikipedia.org/wiki/Rsync
 [Setting Up Your QMK Environment]: https://docs.qmk.fm/#/newbs_getting_started
+[steno-firmware]: https://github.com/JoshuaGrams/steno-firmware
