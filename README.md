@@ -48,14 +48,19 @@ rsync --recursive qmk_keymaps/keyboards/ qmk_firmware/keyboards/
 
 ### Copy Steno Firmware Overrides
 
-If you plan to use the stenography firmware overrides that allow you to
-auto-repeat chords, or hold down common keys between chords (thanks to
-[Joshua Grams][] for putting up the code for this in his [steno-firmware][]
-repo!), then merge over the contents in the `quantum` directory as well:
+If you plan to use the stenography firmware overrides that allow you to:
+
+- auto-repeat chords
+- hold down common keys between chords
+
+then merge over the contents in the `quantum` directory as well:
 
 ```sh
 rsync --recursive qmk_keymaps/quantum/ qmk_firmware/quantum/
 ```
+
+> Many thanks go to [Joshua Grams][] for putting up the code for this in his
+> [steno-firmware][] repo!
 
 Details about firmware compilation and setup are on the `README` page for the
 specific keymap layout.
@@ -77,7 +82,7 @@ README file for details.
 [Ergodox]: https://ergodox-ez.com/
 [Escape the defaults and Control your keyboard with QMK]: https://www.paulfioravanti.com/blog/escape-defaults-control-keyboard-qmk/
 [Google Sheets]: https://www.google.com/sheets/about/
-[`GS_TIMESTAMP`]: https://github.com/paulfioravanti/qmk_keymaps/blob/master/keyboards/ergodox_ez/keymaps/paulfioravanti/keycodes/custom_keycodes.c#L19
+[`GS_TIMESTAMP`]: https://github.com/paulfioravanti/qmk_keymaps/blob/master/keyboards/ergodox_ez/keymaps/paulfioravanti/user/process_record_user.c#L104
 [Homebrew]: https://brew.sh/
 [Joshua Grams]: https://github.com/JoshuaGrams
 [macOS build tools]: https://docs.qmk.fm/#/getting_started_build_tools?id=macos
