@@ -231,15 +231,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Gaming layer with Numpad, Very limited
     [GAMING] = LAYOUT_georgi(
-        KC_LEFT_SHIFT, KC_Q, KC_W, KC_E,        KC_R,         KC_T,                       KC_Y,                   KC_U,     KC_I,           KC_O, KC_P,         KC_ESCAPE,
-        KC_LEFT_CTRL,  KC_A, KC_S, KC_D,        KC_F,         KC_G,                       KC_H,                   KC_J,     KC_K,           KC_L, KC_SEMICOLON, KC_DOUBLE_QUOTE,
-                                   KC_LEFT_ALT, KC_BACKSPACE, LT(GAMING_2, KC_DELETE),    LT(GAMING_2, KC_ENTER), KC_SPACE, TO(STENO_LAYER)
+        KC_LEFT_SHIFT,     KC_Q, KC_W, KC_E,                          KC_R,         KC_T,         KC_Y,     KC_U,     KC_I,                          KC_O, KC_P,         TO(STENO_LAYER),
+        LCTL_T(KC_ESCAPE), KC_A, KC_S, KC_D,                          KC_F,         KC_G,         KC_H,     KC_J,     KC_K,                          KC_L, KC_SEMICOLON, KC_QUOTE,
+                                       LT(GAMING_2, KC_LEFT_BRACKET), KC_BACKSPACE, KC_DELETE,    KC_ENTER, KC_SPACE, LT(GAMING_2, KC_RIGHT_BRACKET)
     ),
 
     [GAMING_2] = LAYOUT_georgi(
-        KC_LEFT_SHIFT, KC_1, KC_2, KC_3,        KC_4,         KC_5,                       KC_6,     KC_7,     KC_8,                  KC_9,                   KC_0,        KC_MINUS,
-        KC_LEFT_CTRL,  KC_Z, KC_X, KC_C,        KC_V,         KC_B,                       KC_N,     KC_M,     KC_LEFT_ANGLE_BRACKET, KC_RIGHT_ANGLE_BRACKET, KC_QUESTION, KC_RIGHT_SHIFT,
-                                   KC_LEFT_ALT, KC_BACKSPACE, KC_DELETE,                  KC_ENTER, KC_SPACE, TO(STENO_LAYER)
+        KC_GRAVE, KC_1, KC_2, KC_3,                KC_4, KC_BACKSLASH,   KC_6,     KC_7,     KC_8,                KC_9,   KC_MINUS,    TO(STENO_LAYER),
+        KC_TAB,   KC_Z, KC_X, KC_C,                KC_V, KC_B,           KC_N,     KC_M,     KC_COMMA,            KC_DOT, KC_QUESTION, KC_DOUBLE_QUOTE,
+                              KC_LEFT_CURLY_BRACE, KC_5, KC_0,           KC_ENTER, KC_SPACE, KC_RIGHT_CURLY_BRACE
     )
 };
 
