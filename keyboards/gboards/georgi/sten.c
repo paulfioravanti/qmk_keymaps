@@ -94,10 +94,10 @@ bool send_steno_chord_user(steno_mode_t mode, uint8_t chord[6]) {
 	}
 
 	// Handle Gaming Toggle,
-  // CUSTOMISATION BEGIN
+⇥·// CUSTOMISATION BEGIN
 	/* Original cChord == (PWR | FN | ST4 | ST3) */
 	if (cChord == (PWR | ST4) && keymapsCount > 1) {
-  // CUSTOMISATION END
+⇥·// CUSTOMISATION END
 #ifndef NO_DEBUG
 		uprintf("Switching to QMK\n");
 #endif
