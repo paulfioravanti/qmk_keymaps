@@ -3,10 +3,16 @@
 The major changes in this layout from the [default Georgi QMK layout][] consist
 of the following:
 
-- Change the QMK key mnemonics in the Gaming layers from using shorter aliases
+- Change the QMK key mnemonics in the gaming layers from using shorter aliases
   to longer, and, in my opinion more legible, [key names][]
 - Change some of the keys used in the gaming layer to more closely resemble the
   QWERTY layer in my [Ergodox EZ keymap][]
+- Add QMK Combo for the gaming layer that switches back to the steno layer.
+  This is meant to mirror the chord used in `sten.c` to switch from the steno
+  layer to the gaming layer
+
+Since I have also made a minor change to the `sten.c` file of Georgi's firmware,
+it's included here.
 
 ## Compile
 
@@ -16,8 +22,8 @@ make git-submodule
 qmk compile -kb georgi -km paulfioravanti
 ```
 
-This should result in an `gboards_georgi_paulfioravanti.hex` file being generated
-in the `qmk_firmware` root directory.
+This should result in an `gboards_georgi_paulfioravanti.hex` file being
+generated in the `qmk_firmware` root directory.
 
 ## Stenography
 

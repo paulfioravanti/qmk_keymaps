@@ -216,6 +216,21 @@ uint32_t processQwerty(bool lookup) {
     return 0;
 }
 
+// Combos
+enum combos {
+  GOTO_STENO_LAYER
+};
+
+// NOTE: This combo is meant to mirror the chord used to switch to the gaming
+// layer in `sten.c`.
+const uint16_t PROGMEM goto_steno_layer_combo[] = {
+    KC_LEFT_CTRL, KC_H, COMBO_END
+};
+
+combo_t key_combos[COMBO_COUNT] = {
+    [GOTO_STENO_LAYER] = COMBO(goto_steno_layer_combo, TO(STENO_LAYER)),
+};
+
 // "Layers"
 // Steno layer should be first in your map.
 // When PWR | FN | ST3 | ST4 is pressed, the layer is increased to the next map. You must return to STENO_LAYER at the end.
@@ -231,15 +246,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Gaming layer with Numpad, Very limited
     [GAMING] = LAYOUT_georgi(
-        KC_LEFT_SHIFT,     KC_Q, KC_W, KC_E,                          KC_R,         KC_T,         KC_Y,     KC_U,     KC_I,                          KC_O, KC_P,         TO(STENO_LAYER),
-        LCTL_T(KC_ESCAPE), KC_A, KC_S, KC_D,                          KC_F,         KC_G,         KC_H,     KC_J,     KC_K,                          KC_L, KC_SEMICOLON, KC_QUOTE,
-                                       LT(GAMING_2, KC_LEFT_BRACKET), KC_BACKSPACE, KC_DELETE,    KC_ENTER, KC_SPACE, LT(GAMING_2, KC_RIGHT_BRACKET)
+        KC_GRAVE,     KC_Q, KC_W, KC_E,                          KC_R,         KC_T,      /* | */ KC_Y,     KC_U,     KC_I,                          KC_O, KC_P,         KC_ESCAPE,
+        KC_LEFT_CTRL, KC_A, KC_S, KC_D,                          KC_F,         KC_G,      /* | */ KC_H,     KC_J,     KC_K,                          KC_L, KC_SEMICOLON, KC_QUOTE,
+                                  LT(GAMING_2, KC_LEFT_BRACKET), KC_BACKSPACE, KC_DELETE, /* | */ KC_ENTER, KC_SPACE, LT(GAMING_2, KC_RIGHT_BRACKET)
     ),
 
     [GAMING_2] = LAYOUT_georgi(
-        KC_GRAVE, KC_1, KC_2, KC_3,                KC_4, KC_BACKSLASH,   KC_6,     KC_7,     KC_8,                KC_9,   KC_MINUS,    TO(STENO_LAYER),
-        KC_TAB,   KC_Z, KC_X, KC_C,                KC_V, KC_B,           KC_N,     KC_M,     KC_COMMA,            KC_DOT, KC_QUESTION, KC_DOUBLE_QUOTE,
-                              KC_LEFT_CURLY_BRACE, KC_5, KC_0,           KC_ENTER, KC_SPACE, KC_RIGHT_CURLY_BRACE
+        KC_GRAVE, KC_1, KC_2, KC_3,                KC_4, KC_BACKSLASH, /* | */ KC_6,     KC_7,     KC_8,                KC_9,   KC_MINUS,    TO(STENO_LAYER),
+        KC_TAB,   KC_Z, KC_X, KC_C,                KC_V, KC_B,         /* | */ KC_N,     KC_M,     KC_COMMA,            KC_DOT, KC_QUESTION, KC_DOUBLE_QUOTE,
+                              KC_LEFT_CURLY_BRACE, KC_5, KC_0,         /* | */ KC_ENTER, KC_SPACE, KC_RIGHT_CURLY_BRACE
     )
 };
 
