@@ -7,3 +7,5 @@
 // NOTE: Only use these if the process_steno overrides are in place!
 #define STENO_1UP
 #define STENO_REPEAT
+
+#define COMBO_COUNT 1
