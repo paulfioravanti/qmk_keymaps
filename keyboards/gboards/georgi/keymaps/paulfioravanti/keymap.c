@@ -218,7 +218,8 @@ uint32_t processQwerty(bool lookup) {
 
 // Combos
 enum combos {
-  GOTO_STENO_LAYER
+  GOTO_STENO_LAYER,
+  ASI_ESCAPE
 };
 
 // NOTE: This combo is meant to mirror the chord used to switch to the gaming
@@ -226,9 +227,13 @@ enum combos {
 const uint16_t PROGMEM goto_steno_layer_combo[] = {
     KC_LEFT_CTRL, KC_H, COMBO_END
 };
+const uint16_t PROGMEM asi_escape_combo[] = {
+    KC_A, KC_S, KC_I, COMBO_END
+};
 
 combo_t key_combos[COMBO_COUNT] = {
     [GOTO_STENO_LAYER] = COMBO(goto_steno_layer_combo, TO(STENO_LAYER)),
+    [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE)
 };
 
 // "Layers"
