@@ -266,21 +266,60 @@ combo_t key_combos[COMBO_COUNT] = {
     [GZDOOM_TYPIST_DASH_FORWARD] = COMBO(gzdoom_typist_dash_forward_combo, DASH_FORWARD),
     [GZDOOM_TYPIST_DASH_LEFT] = COMBO(gzdoom_typist_dash_left_combo, DASH_LEFT),
     [GZDOOM_TYPIST_DASH_RIGHT] = COMBO(gzdoom_typist_dash_right_combo, DASH_RIGHT)
-};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        switch (keycode) {
-        case DASH_BACKWARD:
+    static bool dashing;
+
+    switch (keycode) {
+    case DASH_BACKWARD:
+        if (record->event.pressed) {
+            SEND_STRING("/db" SS_TAP(X_ENTER));
+            dashing = true;
+        } else {
+            dashing = false;
+        }
+        return false;
+    case DASH_FORWARD:
+        if (record->event.pressed) {
+            SEND_STRING("/df" SS_TAP(X_ENTER));
+            dashing = true;
+        } else {
+            dashing = false;
+        }
+        return false;
+    case DASH_LEFT:
+        if (record->event.pressed) {
+            SEND_STRING("/dl" SS_TAP(X_ENTER));
+            dashing = true;
+        } else {
+            dashing = false;
+        }
+        return false;
+    case DASH_RIGHT:
+        if (record->event.pressed) {
+            SEND_STRING("/dr" SS_TAP(X_ENTER));
+            dashing = true;
+        } else {
+            dashing = false;
+        }
+        return false;
+    case KC_D:
+        if (record->event.pressed && dashing) {
             SEND_STRING("/db" SS_TAP(X_ENTER));
             return false;
-        case DASH_FORWARD:
+        }
+    case KC_E:
+        if (record->event.pressed && dashing) {
             SEND_STRING("/df" SS_TAP(X_ENTER));
             return false;
-        case DASH_LEFT:
+        }
+    case KC_S:
+        if (record->event.pressed && dashing) {
             SEND_STRING("/dl" SS_TAP(X_ENTER));
             return false;
-        case DASH_RIGHT:
+        }
+    case KC_F:
+        if (record->event.pressed && dashing) {
             SEND_STRING("/dr" SS_TAP(X_ENTER));
             return false;
         }
