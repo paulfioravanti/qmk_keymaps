@@ -216,24 +216,76 @@ uint32_t processQwerty(bool lookup) {
     return 0;
 }
 
+enum custom_keycodes {
+  DASH_BACKWARD = SAFE_RANGE,
+  DASH_FORWARD,
+  DASH_LEFT,
+  DASH_RIGHT
+};
+
 // Combos
 enum combos {
+  ASI_ESCAPE,
   GOTO_STENO_LAYER,
-  ASI_ESCAPE
+  GZDOOM_TYPIST_CLEAR_ALL,
+  GZDOOM_TYPIST_DASH_BACKWARD,
+  GZDOOM_TYPIST_DASH_FORWARD,
+  GZDOOM_TYPIST_DASH_LEFT,
+  GZDOOM_TYPIST_DASH_RIGHT
 };
 
 // NOTE: This combo is meant to mirror the chord used to switch to the gaming
 // layer in `sten.c`.
-const uint16_t PROGMEM goto_steno_layer_combo[] = {
-    KC_LEFT_CTRL, KC_H, COMBO_END
-};
 const uint16_t PROGMEM asi_escape_combo[] = {
     KC_A, KC_S, KC_I, COMBO_END
 };
+const uint16_t PROGMEM goto_steno_layer_combo[] = {
+    KC_LEFT_CTRL, KC_H, COMBO_END
+};
+const uint16_t PROGMEM gzdoom_typist_clear_all_combo[] = {
+    KC_S, KC_R, KC_F, KC_BACKSPACE, KC_SPACE, KC_O, COMBO_END
+};
+const uint16_t PROGMEM gzdoom_typist_dash_backward_combo[] = {
+    KC_D, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
+};
+const uint16_t PROGMEM gzdoom_typist_dash_forward_combo[] = {
+    KC_E, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
+};
+const uint16_t PROGMEM gzdoom_typist_dash_left_combo[] = {
+    KC_S, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
+};
+const uint16_t PROGMEM gzdoom_typist_dash_right_combo[] = {
+    KC_F, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
+};
 
 combo_t key_combos[COMBO_COUNT] = {
+    [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE),
     [GOTO_STENO_LAYER] = COMBO(goto_steno_layer_combo, TO(STENO_LAYER)),
-    [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE)
+    [GZDOOM_TYPIST_CLEAR_ALL] = COMBO(gzdoom_typist_clear_all_combo, LCTL(KC_BACKSPACE)),
+    [GZDOOM_TYPIST_DASH_BACKWARD] = COMBO(gzdoom_typist_dash_backward_combo, DASH_BACKWARD),
+    [GZDOOM_TYPIST_DASH_FORWARD] = COMBO(gzdoom_typist_dash_forward_combo, DASH_FORWARD),
+    [GZDOOM_TYPIST_DASH_LEFT] = COMBO(gzdoom_typist_dash_left_combo, DASH_LEFT),
+    [GZDOOM_TYPIST_DASH_RIGHT] = COMBO(gzdoom_typist_dash_right_combo, DASH_RIGHT)
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        switch (keycode) {
+        case DASH_BACKWARD:
+            SEND_STRING("/db" SS_TAP(X_ENTER));
+            return false;
+        case DASH_FORWARD:
+            SEND_STRING("/df" SS_TAP(X_ENTER));
+            return false;
+        case DASH_LEFT:
+            SEND_STRING("/dl" SS_TAP(X_ENTER));
+            return false;
+        case DASH_RIGHT:
+            SEND_STRING("/dr" SS_TAP(X_ENTER));
+            return false;
+        }
+    }
+    return true;
 };
 
 // "Layers"
