@@ -4,8 +4,8 @@ Custom keymaps I have made for mechanical keyboards running [QMK Firmware][].
 
 ## Blog Posts
 
-Lots of tinkering the the layouts has results in what I learned taking up a fair
-share of content on [my blog][]:
+Lots of tinkering with keyboard layouts has resulted in what I learned taking up
+a fair share of content on [my blog][].
 
 I wrote a post about getting started with creating a QMK keyboard layout.
 Although it is quite [Ergodox][]-centric, I think there is still enough general
