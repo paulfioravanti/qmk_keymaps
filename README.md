@@ -4,9 +4,12 @@ Custom keymaps I have made for mechanical keyboards running [QMK Firmware][].
 
 ## Blog Posts
 
-I wrote a blog post all about getting started with creating a QMK keyboard
-layout. Although it is quite [Ergodox][]-centric, I think there is still enough
-general QMK content in there to be of use if you use any other type of keyboard:
+Lots of tinkering the the layouts has results in what I learned taking up a fair
+share of content on [my blog][]:
+
+I wrote a post about getting started with creating a QMK keyboard layout.
+Although it is quite [Ergodox][]-centric, I think there is still enough general
+QMK content in there to be of use if you use any other type of keyboard:
 
 - _[Escape the defaults and Control your keyboard with QMK][]_
 
@@ -15,6 +18,11 @@ timestamp into a [Google Sheets][] cell, ended up being far more involved that
 I originally thought, so I wrote up a blog post about that:
 
 - _[All I want is a Timestamp][]_
+
+Compilation and customisation of the Georgi layout, in particular its [Gaming
+mode][Georgi Gaming Mode], was the subject of the following blog post:
+
+- _[Flashing Georgi Firmware][]_
 
 ## Dependencies
 
@@ -67,9 +75,9 @@ specific keymap layout.
 
 ## Flashing Firmware
 
-QMK has its own tool, [QMK Toolbox][], for flashing firmware, but for Ergodox
-firmware flashing, I had better luck with other tools. See Ergodox EZ layout
-README file for details.
+QMK has its own tool, [QMK Toolbox][], for flashing firmware. If it seems a bit
+too technical for you, and you own an Ergodox EZ, you may have luck with other
+tools. See Ergodox EZ layout README file for details.
 
 ## Handy Links
 
@@ -81,11 +89,14 @@ README file for details.
 [All I want is a Timestamp]: https://www.paulfioravanti.com/blog/google-sheets-timestamp/
 [Ergodox]: https://ergodox-ez.com/
 [Escape the defaults and Control your keyboard with QMK]: https://www.paulfioravanti.com/blog/escape-defaults-control-keyboard-qmk/
+[Flashing Georgi Firmware]: https://www.paulfioravanti.com/blog/flashing-georgi-firmware/
+[Georgi Gaming Mode]: http://docs.gboards.ca/docs/Unboxing-Georgi/#entering-qmk-gaming-mode
 [Google Sheets]: https://www.google.com/sheets/about/
 [`GS_TIMESTAMP`]: https://github.com/paulfioravanti/qmk_keymaps/blob/master/keyboards/ergodox_ez/keymaps/paulfioravanti/user/process_record_user.c#L104
 [Homebrew]: https://brew.sh/
 [Joshua Grams]: https://github.com/JoshuaGrams
 [macOS build tools]: https://docs.qmk.fm/#/getting_started_build_tools?id=macos
+[my blog]: https://www.paulfioravanti.com/
 [QMK Config Options]: https://docs.qmk.fm/#/config_options
 [QMK Customizing Functionality]: https://docs.qmk.fm/#/custom_quantum_functions
 [QMK documentation]: https://docs.qmk.fm/#/
