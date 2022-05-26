@@ -225,6 +225,8 @@ enum custom_keycodes {
 };
 
 // Combos
+// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md
+// https://docs.qmk.fm/#/feature_combo?id=combos
 enum combos {
   ASI_ESCAPE,
   GOTO_STENO_LAYER,
