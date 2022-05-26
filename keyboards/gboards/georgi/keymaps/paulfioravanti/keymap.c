@@ -241,13 +241,11 @@ enum combos {
   GZDOOM_TYPIST_RETURN_TO_AUTO_MODE
 };
 
-// NOTE: This combo is meant to mirror the chord used to switch to the gaming
-// layer in `sten.c`.
-
 // Mimics "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
 const uint16_t PROGMEM asi_escape_combo[] = {
     KC_A, KC_S, KC_I, COMBO_END
 };
+// Mimics the (PWR | ST4) chord used to switch to the gaming layer in `sten.c`.
 const uint16_t PROGMEM goto_steno_layer_combo[] = {
     KC_LEFT_CTRL, KC_H, COMBO_END
 };
