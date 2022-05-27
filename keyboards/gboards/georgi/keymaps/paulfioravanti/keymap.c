@@ -238,7 +238,8 @@ enum combos {
   GZDOOM_TYPIST_DASH_RIGHT,
   GZDOOM_TYPIST_FORCE_COMBAT,
   GZDOOM_TYPIST_FORCE_EXPLORATION,
-  GZDOOM_TYPIST_RETURN_TO_AUTO_MODE
+  GZDOOM_TYPIST_RETURN_TO_AUTO_MODE,
+  GZDOOM_TYPIST_TOGGLE_RUN
 };
 
 // Mimics "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
@@ -284,6 +285,9 @@ const uint16_t PROGMEM gzdoom_typist_force_exploration_combo[] = {
 const uint16_t PROGMEM gzdoom_typist_return_to_auto_mode_combo[] = {
     KC_BACKSPACE, KC_H, KC_SPACE, KC_I, KC_O, COMBO_END
 };
+const uint16_t PROGMEM gzdoom_typist_toggle_run_combo[] = {
+    KC_U, KC_I, KC_O, KC_P, COMBO_END
+};
 
 combo_t key_combos[COMBO_COUNT] = {
     [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE),
@@ -298,7 +302,8 @@ combo_t key_combos[COMBO_COUNT] = {
     [GZDOOM_TYPIST_FORCE_COMBAT] = COMBO(gzdoom_typist_force_combat_combo, KC_GRAVE),
     [GZDOOM_TYPIST_FORCE_EXPLORATION] = COMBO(gzdoom_typist_force_exploration_combo, KC_ESCAPE),
     // NOTE: Key customisable on the GZDoom UI as "Unlock Game Mode".
-    [GZDOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(gzdoom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL)
+    [GZDOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(gzdoom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
+    [GZDOOM_TYPIST_TOGGLE_RUN] = COMBO(gzdoom_typist_toggle_run_combo, KC_LEFT_SHIFT)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
