@@ -229,6 +229,7 @@ enum custom_keycodes {
 // https://docs.qmk.fm/#/feature_combo?id=combos
 enum combos {
   ASI_ESCAPE,
+  FJ_ENTER,
   GOTO_STENO_LAYER,
   GZDOOM_TYPIST_CLEAR_ALL,
   GZDOOM_TYPIST_DASH,
@@ -245,6 +246,10 @@ enum combos {
 // Mimics "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
 const uint16_t PROGMEM asi_escape_combo[] = {
     KC_A, KC_S, KC_I, COMBO_END
+};
+// Mimics "R-R" chord for Enter/Return
+const uint16_t PROGMEM fj_enter_combo[] = {
+    KC_F, KC_J, COMBO_END
 };
 // Mimics the (PWR | ST4) chord used to switch to the gaming layer in `sten.c`.
 const uint16_t PROGMEM goto_steno_layer_combo[] = {
@@ -291,6 +296,7 @@ const uint16_t PROGMEM gzdoom_typist_toggle_run_combo[] = {
 
 combo_t key_combos[COMBO_COUNT] = {
     [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE),
+    [FJ_ENTER] = COMBO(fj_enter_combo, KC_ENTER),
     [GOTO_STENO_LAYER] = COMBO(goto_steno_layer_combo, TO(STENO_LAYER)),
     [GZDOOM_TYPIST_CLEAR_ALL] = COMBO(gzdoom_typist_clear_all_combo, LCTL(KC_BACKSPACE)),
     [GZDOOM_TYPIST_DASH] = COMBO(gzdoom_typist_dash_combo, DASH),
