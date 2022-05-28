@@ -309,7 +309,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [GZDOOM_TYPIST_FORCE_EXPLORATION] = COMBO(gzdoom_typist_force_exploration_combo, KC_ESCAPE),
     // NOTE: Key customisable on the GZDoom UI as "Unlock Game Mode".
     [GZDOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(gzdoom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
-    [GZDOOM_TYPIST_TOGGLE_RUN] = COMBO(gzdoom_typist_toggle_run_combo, KC_LEFT_SHIFT)
+    [GZDOOM_TYPIST_TOGGLE_RUN] = COMBO(gzdoom_typist_toggle_run_combo, KC_TAB)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
