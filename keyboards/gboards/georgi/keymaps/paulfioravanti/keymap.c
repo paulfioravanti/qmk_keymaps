@@ -231,16 +231,17 @@ enum combos {
   ASI_ESCAPE,
   FJ_ENTER,
   GOTO_STENO_LAYER,
-  GZDOOM_TYPIST_CLEAR_ALL,
-  GZDOOM_TYPIST_DASH,
-  GZDOOM_TYPIST_DASH_BACKWARD,
-  GZDOOM_TYPIST_DASH_FORWARD,
-  GZDOOM_TYPIST_DASH_LEFT,
-  GZDOOM_TYPIST_DASH_RIGHT,
-  GZDOOM_TYPIST_FORCE_COMBAT,
-  GZDOOM_TYPIST_FORCE_EXPLORATION,
-  GZDOOM_TYPIST_RETURN_TO_AUTO_MODE,
-  GZDOOM_TYPIST_TOGGLE_RUN
+  DOOM_TYPIST_CLEAR_ALL,
+  DOOM_TYPIST_DASH,
+  DOOM_TYPIST_DASH_BACKWARD,
+  DOOM_TYPIST_DASH_FORWARD,
+  DOOM_TYPIST_DASH_LEFT,
+  DOOM_TYPIST_DASH_RIGHT,
+  DOOM_TYPIST_FORCE_COMBAT,
+  DOOM_TYPIST_FORCE_EXPLORATION,
+  DOOM_TYPIST_QUICK_TURN,
+  DOOM_TYPIST_RETURN_TO_AUTO_MODE,
+  DOOM_TYPIST_TOGGLE_RUN
 };
 
 // Mimics "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
@@ -286,6 +287,9 @@ const uint16_t PROGMEM gzdoom_typist_force_combat_combo[] = {
 const uint16_t PROGMEM gzdoom_typist_force_exploration_combo[] = {
     KC_A, KC_E, KC_R, KC_F, KC_DELETE, KC_H, KC_J, COMBO_END
 };
+const uint16_t PROGMEM gzdoom_typist_quick_turn_combo[] = {
+    KC_D, KC_K, COMBO_END
+};
 // Mimics "A*UPL": "{:CMT:return to AUto Mode}{:KEY_COMBO:CONTROL_L}"
 const uint16_t PROGMEM gzdoom_typist_return_to_auto_mode_combo[] = {
     KC_BACKSPACE, KC_H, KC_SPACE, KC_I, KC_O, COMBO_END
@@ -298,22 +302,24 @@ combo_t key_combos[COMBO_COUNT] = {
     [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE),
     [FJ_ENTER] = COMBO(fj_enter_combo, KC_ENTER),
     [GOTO_STENO_LAYER] = COMBO(goto_steno_layer_combo, TO(STENO_LAYER)),
-    [GZDOOM_TYPIST_CLEAR_ALL] = COMBO(gzdoom_typist_clear_all_combo, LCTL(KC_BACKSPACE)),
-    [GZDOOM_TYPIST_DASH] = COMBO(gzdoom_typist_dash_combo, DASH),
-    [GZDOOM_TYPIST_DASH_BACKWARD] = COMBO(gzdoom_typist_dash_backward_combo, DASH_BACKWARD),
-    [GZDOOM_TYPIST_DASH_FORWARD] = COMBO(gzdoom_typist_dash_forward_combo, DASH_FORWARD),
-    [GZDOOM_TYPIST_DASH_LEFT] = COMBO(gzdoom_typist_dash_left_combo, DASH_LEFT),
-    [GZDOOM_TYPIST_DASH_RIGHT] = COMBO(gzdoom_typist_dash_right_combo, DASH_RIGHT),
+    [DOOM_TYPIST_CLEAR_ALL] = COMBO(gzdoom_typist_clear_all_combo, LCTL(KC_BACKSPACE)),
+    [DOOM_TYPIST_DASH] = COMBO(gzdoom_typist_dash_combo, DASH),
+    [DOOM_TYPIST_DASH_BACKWARD] = COMBO(gzdoom_typist_dash_backward_combo, DASH_BACKWARD),
+    [DOOM_TYPIST_DASH_FORWARD] = COMBO(gzdoom_typist_dash_forward_combo, DASH_FORWARD),
+    [DOOM_TYPIST_DASH_LEFT] = COMBO(gzdoom_typist_dash_left_combo, DASH_LEFT),
+    [DOOM_TYPIST_DASH_RIGHT] = COMBO(gzdoom_typist_dash_right_combo, DASH_RIGHT),
     // NOTE: Key customisable on the GZDoom UI as "Force Combat Mode".
-    [GZDOOM_TYPIST_FORCE_COMBAT] = COMBO(gzdoom_typist_force_combat_combo, KC_GRAVE),
-    [GZDOOM_TYPIST_FORCE_EXPLORATION] = COMBO(gzdoom_typist_force_exploration_combo, KC_ESCAPE),
+    [DOOM_TYPIST_FORCE_COMBAT] = COMBO(gzdoom_typist_force_combat_combo, KC_GRAVE),
+    [DOOM_TYPIST_FORCE_EXPLORATION] = COMBO(gzdoom_typist_force_exploration_combo, KC_ESCAPE),
+    [DOOM_TYPIST_QUICK_TURN] = COMBO(gzdoom_typist_quick_turn_combo, KC_BACKSLASH),
     // NOTE: Key customisable on the GZDoom UI as "Unlock Game Mode".
-    [GZDOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(gzdoom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
-    [GZDOOM_TYPIST_TOGGLE_RUN] = COMBO(gzdoom_typist_toggle_run_combo, KC_TAB)
+    [DOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(gzdoom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
+    [DOOM_TYPIST_TOGGLE_RUN] = COMBO(gzdoom_typist_toggle_run_combo, KC_TAB)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool dashing;
+    static bool moving_backward;
 
     switch (keycode) {
     case DASH:
@@ -356,23 +362,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
     case KC_D:
-        if (record->event.pressed && dashing) {
-            SEND_STRING("/db" SS_TAP(X_ENTER));
-            return false;
+        if (record->event.pressed) {
+            if (dashing) {
+                SEND_STRING("/db" SS_TAP(X_ENTER));
+                return false;
+            } else {
+                moving_backward = true;
+                return true;
+            }
+        } else {
+            moving_backward = false;
+            return true;
         }
     case KC_E:
         if (record->event.pressed && dashing) {
             SEND_STRING("/df" SS_TAP(X_ENTER));
             return false;
         }
-    case KC_S:
-        if (record->event.pressed && dashing) {
-            SEND_STRING("/dl" SS_TAP(X_ENTER));
-            return false;
-        }
     case KC_F:
         if (record->event.pressed && dashing) {
             SEND_STRING("/dr" SS_TAP(X_ENTER));
+            return false;
+        }
+    case KC_K:
+        // Use Case: Doing a quick turn while moving backward.
+        if (record->event.pressed && moving_backward) {
+            // NOTE: X_BSLS is for Backslash (X_BACKSLASH doesn't compile)
+            SEND_STRING(SS_TAP(X_BSLS));
+            moving_backward = false;
+            return false;
+        }
+    case KC_S:
+        if (record->event.pressed && dashing) {
+            SEND_STRING("/dl" SS_TAP(X_ENTER));
             return false;
         }
     }
