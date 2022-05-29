@@ -288,7 +288,7 @@ const uint16_t PROGMEM doom_typist_force_exploration_combo[] = {
     KC_A, KC_E, KC_R, KC_F, KC_DELETE, KC_H, KC_J, COMBO_END
 };
 const uint16_t PROGMEM doom_typist_quick_turn_combo[] = {
-    KC_D, KC_K, COMBO_END
+    KC_D, KC_QUOTE, COMBO_END
 };
 // Mimics "A*UPL": "{:CMT:return to AUto Mode}{:KEY_COMBO:CONTROL_L}"
 const uint16_t PROGMEM doom_typist_return_to_auto_mode_combo[] = {
@@ -384,7 +384,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("/dr" SS_TAP(X_ENTER));
             return false;
         }
-    case KC_K:
+    case KC_QUOTE:
         // Use Case: Doing a quick turn while moving backward.
         if (record->event.pressed && moving_backward) {
             // NOTE: X_BSLS is for Backslash (X_BACKSLASH doesn't compile)
