@@ -8,4 +8,4 @@
 #define STENO_1UP
 #define STENO_REPEAT
 
-#define COMBO_COUNT 14
+#define COMBO_COUNT 45

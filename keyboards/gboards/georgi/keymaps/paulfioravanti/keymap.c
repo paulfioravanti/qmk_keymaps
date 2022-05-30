@@ -257,9 +257,11 @@ enum combos {
   STENO_K,
   STENO_L,
   STENO_M,
+  STENO_MINUS,
   STENO_N,
   STENO_O,
   STENO_P,
+  STENO_PLUS,
   STENO_Q,
   STENO_R,
   STENO_S,
@@ -371,6 +373,9 @@ const uint16_t PROGMEM steno_l_combo[] = {
 const uint16_t PROGMEM steno_m_combo[] = {
     KC_E, KC_R, KC_H, COMBO_END
 };
+const uint16_t PROGMEM steno_minus_combo[] = {
+    KC_R, KC_I, KC_K, COMBO_END
+};
 const uint16_t PROGMEM steno_n_combo[] = {
     KC_W, KC_E, KC_R, KC_H, COMBO_END
 };
@@ -379,6 +384,9 @@ const uint16_t PROGMEM steno_o_combo[] = {
 };
 const uint16_t PROGMEM steno_p_combo[] = {
     KC_E, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_plus_combo[] = {
+    KC_E, KC_R, KC_F, KC_H, KC_SPACE, KC_SEMICOLON, COMBO_END
 };
 const uint16_t PROGMEM steno_q_combo[] = {
     KC_S, KC_D, KC_H, COMBO_END
@@ -446,9 +454,11 @@ combo_t key_combos[COMBO_COUNT] = {
     [STENO_K] = COMBO(steno_k_combo, KC_K),
     [STENO_L] = COMBO(steno_l_combo, KC_L),
     [STENO_M] = COMBO(steno_m_combo, KC_M),
+    [STENO_MINUS] = COMBO(steno_minus_combo, KC_MINUS),
     [STENO_N] = COMBO(steno_n_combo, KC_N),
     [STENO_O] = COMBO(steno_o_combo, KC_O),
     [STENO_P] = COMBO(steno_p_combo, KC_P),
+    [STENO_PLUS] = COMBO(steno_plus_combo, KC_PLUS),
     [STENO_Q] = COMBO(steno_q_combo, KC_Q),
     [STENO_R] = COMBO(steno_r_combo, KC_R),
     [STENO_S] = COMBO(steno_s_combo, KC_S),
