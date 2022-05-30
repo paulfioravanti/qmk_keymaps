@@ -241,7 +241,36 @@ enum combos {
   DOOM_TYPIST_FORCE_EXPLORATION,
   DOOM_TYPIST_QUICK_TURN,
   DOOM_TYPIST_RETURN_TO_AUTO_MODE,
-  DOOM_TYPIST_TOGGLE_RUN
+  DOOM_TYPIST_TOGGLE_RUN,
+  STENO_A,
+  STENO_B,
+  STENO_C,
+  STENO_D,
+  STENO_E,
+  STENO_E_LEFT,
+  STENO_F,
+  STENO_G,
+  STENO_H,
+  STENO_I,
+  STENO_I_LEFT,
+  STENO_J,
+  STENO_K,
+  STENO_L,
+  STENO_M,
+  STENO_N,
+  STENO_O,
+  STENO_P,
+  STENO_Q,
+  STENO_R,
+  STENO_S,
+  STENO_T,
+  STENO_U,
+  STENO_U_LEFT,
+  STENO_V,
+  STENO_W,
+  STENO_X,
+  STENO_Y,
+  STENO_Z
 };
 
 // Mimics "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
@@ -297,6 +326,93 @@ const uint16_t PROGMEM doom_typist_return_to_auto_mode_combo[] = {
 const uint16_t PROGMEM doom_typist_toggle_run_combo[] = {
     KC_U, KC_I, KC_O, KC_P, COMBO_END
 };
+const uint16_t PROGMEM steno_a_combo[] = {
+    KC_BACKSPACE, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_b_combo[] = {
+    KC_E, KC_D, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_c_combo[] = {
+    KC_S, KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_d_combo[] = {
+    KC_W, KC_S, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_e_combo[] = {
+    KC_G, KC_ENTER, COMBO_END
+};
+const uint16_t PROGMEM steno_e_left_combo[] = {
+    KC_A, KC_S, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_f_combo[] = {
+    KC_W, KC_E, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_g_combo[] = {
+    KC_W, KC_S, KC_E, KC_D, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_h_combo[] = {
+    KC_R, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_i_combo[] = {
+    KC_G, KC_ENTER, KC_SPACE, COMBO_END
+};
+const uint16_t PROGMEM steno_i_left_combo[] = {
+    KC_A, KC_S, KC_D, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_j_combo[] = {
+    KC_A, KC_S, KC_D, KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_k_combo[] = {
+    KC_S, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_l_combo[] = {
+    KC_R, KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_m_combo[] = {
+    KC_E, KC_R, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_n_combo[] = {
+    KC_W, KC_E, KC_R, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_o_combo[] = {
+    KC_DELETE, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_p_combo[] = {
+    KC_E, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_q_combo[] = {
+    KC_S, KC_D, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_r_combo[] = {
+    KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_s_combo[] = {
+    KC_A, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_t_combo[] = {
+    KC_W, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_u_combo[] = {
+    KC_G, KC_SPACE, COMBO_END
+};
+const uint16_t PROGMEM steno_u_left_combo[] = {
+    KC_D, KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_v_combo[] = {
+    KC_A, KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_w_combo[] = {
+    KC_D, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_x_combo[] = {
+    KC_S, KC_E, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_y_combo[] = {
+    KC_S, KC_D, KC_F, KC_H, COMBO_END
+};
+const uint16_t PROGMEM steno_z_combo[] = {
+    KC_A, KC_W, KC_S, KC_E, KC_D, KC_H, COMBO_END
+};
 
 combo_t key_combos[COMBO_COUNT] = {
     [ASI_ESCAPE] = COMBO(asi_escape_combo, KC_ESCAPE),
@@ -314,7 +430,36 @@ combo_t key_combos[COMBO_COUNT] = {
     [DOOM_TYPIST_QUICK_TURN] = COMBO(doom_typist_quick_turn_combo, KC_BACKSLASH),
     // NOTE: Key customisable on the doom UI as "Unlock Game Mode".
     [DOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(doom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
-    [DOOM_TYPIST_TOGGLE_RUN] = COMBO(doom_typist_toggle_run_combo, KC_TAB)
+    [DOOM_TYPIST_TOGGLE_RUN] = COMBO(doom_typist_toggle_run_combo, KC_TAB),
+    [STENO_A] = COMBO(steno_a_combo, KC_A),
+    [STENO_B] = COMBO(steno_b_combo, KC_B),
+    [STENO_C] = COMBO(steno_c_combo, KC_C),
+    [STENO_D] = COMBO(steno_d_combo, KC_D),
+    [STENO_E] = COMBO(steno_e_combo, KC_E),
+    [STENO_E_LEFT] = COMBO(steno_e_left_combo, KC_E),
+    [STENO_F] = COMBO(steno_f_combo, KC_F),
+    [STENO_G] = COMBO(steno_g_combo, KC_G),
+    [STENO_H] = COMBO(steno_h_combo, KC_H),
+    [STENO_I] = COMBO(steno_i_combo, KC_I),
+    [STENO_I_LEFT] = COMBO(steno_i_left_combo, KC_I),
+    [STENO_J] = COMBO(steno_j_combo, KC_J),
+    [STENO_K] = COMBO(steno_k_combo, KC_K),
+    [STENO_L] = COMBO(steno_l_combo, KC_L),
+    [STENO_M] = COMBO(steno_m_combo, KC_M),
+    [STENO_N] = COMBO(steno_n_combo, KC_N),
+    [STENO_O] = COMBO(steno_o_combo, KC_O),
+    [STENO_P] = COMBO(steno_p_combo, KC_P),
+    [STENO_Q] = COMBO(steno_q_combo, KC_Q),
+    [STENO_R] = COMBO(steno_r_combo, KC_R),
+    [STENO_S] = COMBO(steno_s_combo, KC_S),
+    [STENO_T] = COMBO(steno_t_combo, KC_T),
+    [STENO_U] = COMBO(steno_u_combo, KC_U),
+    [STENO_U_LEFT] = COMBO(steno_u_left_combo, KC_U),
+    [STENO_V] = COMBO(steno_v_combo, KC_V),
+    [STENO_W] = COMBO(steno_w_combo, KC_W),
+    [STENO_X] = COMBO(steno_x_combo, KC_X),
+    [STENO_Y] = COMBO(steno_y_combo, KC_Y),
+    [STENO_Z] = COMBO(steno_z_combo, KC_Z)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
