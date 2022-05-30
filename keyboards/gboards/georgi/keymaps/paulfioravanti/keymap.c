@@ -565,21 +565,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Main layer, everything goes through here
     [STENO_LAYER] = LAYOUT_georgi(
-        STN_FN,  STN_S1,  STN_TL,  STN_PL,  STN_HL,  STN_ST1,       STN_ST3, STN_FR,  STN_PR,  STN_LR,  STN_TR,  STN_DR,
-        STN_PWR, STN_S2,  STN_KL,  STN_WL,  STN_RL,  STN_ST2,       STN_ST4, STN_RR,  STN_BR,  STN_GR,  STN_SR,  STN_ZR,
-                                   STN_N1,  STN_A,   STN_O,         STN_E,   STN_U,   STN_N7
+        STN_FN,       STN_S1, STN_TL, STN_PL,                        STN_HL,       STN_ST1,   /* | */ STN_ST3,  STN_FR,   STN_PR,                        STN_LR, STN_TR,       STN_DR,
+        STN_PWR,      STN_S2, STN_KL, STN_WL,                        STN_RL,       STN_ST2,   /* | */ STN_ST4,  STN_RR,   STN_BR,                        STN_GR, STN_SR,       STN_ZR,
+                                      STN_N1,                        STN_A,        STN_O,     /* | */ STN_E,    STN_U,    STN_N7
     ),
     // Gaming layer with Numpad, Very limited
     [GAMING] = LAYOUT_georgi(
-        KC_GRAVE,     KC_Q, KC_W, KC_E,                          KC_R,         KC_T,      /* | */ KC_Y,     KC_U,     KC_I,                          KC_O, KC_P,         KC_ESCAPE,
-        KC_LEFT_CTRL, KC_A, KC_S, KC_D,                          KC_F,         KC_G,      /* | */ KC_H,     KC_J,     KC_K,                          KC_L, KC_SEMICOLON, KC_QUOTE,
-                                  LT(GAMING_2, KC_LEFT_BRACKET), KC_BACKSPACE, KC_DELETE, /* | */ KC_ENTER, KC_SPACE, LT(GAMING_2, KC_RIGHT_BRACKET)
+        KC_GRAVE,     KC_Q,   KC_W,   KC_E,                          KC_R,         KC_T,      /* | */ KC_Y,     KC_U,     KC_I,                          KC_O,   KC_P,         KC_ESCAPE,
+        KC_LEFT_CTRL, KC_A,   KC_S,   KC_D,                          KC_F,         KC_G,      /* | */ KC_H,     KC_J,     KC_K,                          KC_L,   KC_SEMICOLON, KC_QUOTE,
+                                      LT(GAMING_2, KC_LEFT_BRACKET), KC_BACKSPACE, KC_DELETE, /* | */ KC_ENTER, KC_SPACE, LT(GAMING_2, KC_RIGHT_BRACKET)
     ),
 
     [GAMING_2] = LAYOUT_georgi(
-        KC_GRAVE, KC_1, KC_2, KC_3,                KC_4, KC_EQUAL, /* | */ KC_6,     KC_7,     KC_8,                KC_9,   KC_MINUS,    TO(STENO_LAYER),
-        KC_TAB,   KC_Z, KC_X, KC_C,                KC_V, KC_B,     /* | */ KC_N,     KC_M,     KC_COMMA,            KC_DOT, KC_QUESTION, KC_DOUBLE_QUOTE,
-                              KC_LEFT_CURLY_BRACE, KC_5, KC_0,     /* | */ KC_ENTER, KC_SPACE, KC_RIGHT_CURLY_BRACE
+        KC_GRAVE,     KC_1,   KC_2,   KC_3,                          KC_4,         KC_EQUAL,  /* | */ KC_6,     KC_7,     KC_8,                          KC_9,   KC_MINUS,     TO(STENO_LAYER),
+        KC_TAB,       KC_Z,   KC_X,   KC_C,                          KC_V,         KC_B,      /* | */ KC_N,     KC_M,     KC_COMMA,                      KC_DOT, KC_QUESTION,  KC_DOUBLE_QUOTE,
+                                      KC_LEFT_CURLY_BRACE,           KC_5,         KC_0,      /* | */ KC_ENTER, KC_SPACE, KC_RIGHT_CURLY_BRACE
     )
 };
 
