@@ -275,53 +275,53 @@ enum combos {
   STENO_Z
 };
 
-// Mimics "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
+// Mirrors "SK-P": "{:CMT:eSCaPe (⎋)}{:KEY_COMBO:ESCAPE}{MODE:RESET}"
 const uint16_t PROGMEM asi_escape_combo[] = {
     KC_A, KC_S, KC_I, COMBO_END
 };
-// Mimics "R-R" chord for Enter/Return
+// Mirrors "R-R" chord for Enter/Return
 const uint16_t PROGMEM fj_enter_combo[] = {
     KC_F, KC_J, COMBO_END
 };
-// Mimics the (PWR | ST4) chord used to switch to the gaming layer in `sten.c`.
+// Mirrors the (PWR | ST4) chord used to switch to the gaming layer in `sten.c`.
 const uint16_t PROGMEM goto_steno_layer_combo[] = {
     KC_LEFT_CTRL, KC_H, COMBO_END
 };
-// Mimics "KHRAUL": "{:CMT: CLear ALL}{:KEY_COMBO:CONTROL_L(BACKSPACE)}"
+// Mirrors "KHRAUL": "{:CMT: CLear ALL}{:KEY_COMBO:CONTROL_L(BACKSPACE)}"
 const uint16_t PROGMEM doom_typist_clear_all_combo[] = {
     KC_S, KC_R, KC_F, KC_BACKSPACE, KC_SPACE, KC_O, COMBO_END
 };
 const uint16_t PROGMEM doom_typist_dash_combo[] = {
     KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mimics "W-RBGS": "{:CMT:dash backward}{:ATTACH:/db}{:KEY_COMBO:RETURN}"
+// Mirrors "W-RBGS": "{:CMT:dash backward}{:ATTACH:/db}{:KEY_COMBO:RETURN}"
 const uint16_t PROGMEM doom_typist_dash_backward_combo[] = {
     KC_D, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mimics "P-RBGS": "{:CMT:dash forward}{:ATTACH:/df}{:KEY_COMBO:RETURN}"
+// Mirrors "P-RBGS": "{:CMT:dash forward}{:ATTACH:/df}{:KEY_COMBO:RETURN}"
 const uint16_t PROGMEM doom_typist_dash_forward_combo[] = {
     KC_E, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mimics "K-RBGS": "{:CMT:dash left}{:ATTACH:/dl}{:KEY_COMBO:RETURN}"
+// Mirrors "K-RBGS": "{:CMT:dash left}{:ATTACH:/dl}{:KEY_COMBO:RETURN}"
 const uint16_t PROGMEM doom_typist_dash_left_combo[] = {
     KC_S, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mimics "R-RBGS": "{:CMT:dash right}{:ATTACH:/dr}{:KEY_COMBO:RETURN}"
+// Mirrors "R-RBGS": "{:CMT:dash right}{:ATTACH:/dr}{:KEY_COMBO:RETURN}"
 const uint16_t PROGMEM doom_typist_dash_right_combo[] = {
     KC_F, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mimics "KPWA*T": "{:CMT:force COMBAT}{:KEY_COMBO:GRAVE}",
+// Mirrors "KPWA*T": "{:CMT:force COMBAT}{:KEY_COMBO:GRAVE}",
 const uint16_t PROGMEM doom_typist_force_combat_combo[] = {
     KC_S, KC_E, KC_D, KC_BACKSPACE, KC_H, KC_P, COMBO_END
 };
-// Mimics "SPHRO*R": "{:CMT:force EXPLORE}{:KEY_COMBO:ESCAPE}"
+// Mirrors "SPHRO*R": "{:CMT:force EXPLORE}{:KEY_COMBO:ESCAPE}"
 const uint16_t PROGMEM doom_typist_force_exploration_combo[] = {
     KC_A, KC_E, KC_R, KC_F, KC_DELETE, KC_H, KC_J, COMBO_END
 };
 const uint16_t PROGMEM doom_typist_quick_turn_combo[] = {
     KC_D, KC_QUOTE, COMBO_END
 };
-// Mimics "A*UPL": "{:CMT:return to AUto Mode}{:KEY_COMBO:CONTROL_L}"
+// Mirrors "A*UPL": "{:CMT:return to AUto Mode}{:KEY_COMBO:CONTROL_L}"
 const uint16_t PROGMEM doom_typist_return_to_auto_mode_combo[] = {
     KC_BACKSPACE, KC_H, KC_SPACE, KC_I, KC_O, COMBO_END
 };
