@@ -239,7 +239,6 @@ enum combos {
   DOOM_TYPIST_DASH_RIGHT,
   DOOM_TYPIST_FORCE_COMBAT,
   DOOM_TYPIST_FORCE_EXPLORATION,
-  DOOM_TYPIST_QUICK_TURN,
   DOOM_TYPIST_RETURN_TO_AUTO_MODE,
   DOOM_TYPIST_TOGGLE_RUN,
   STENO_A,
@@ -317,9 +316,6 @@ const uint16_t PROGMEM doom_typist_force_combat_combo[] = {
 // Mirrors "SPHRO*R": "{:CMT:force EXPLORE}{:KEY_COMBO:ESCAPE}"
 const uint16_t PROGMEM doom_typist_force_exploration_combo[] = {
     KC_A, KC_E, KC_R, KC_F, KC_DELETE, KC_H, KC_J, COMBO_END
-};
-const uint16_t PROGMEM doom_typist_quick_turn_combo[] = {
-    KC_D, KC_QUOTE, COMBO_END
 };
 // Mirrors "A*UPL": "{:CMT:return to AUto Mode}{:KEY_COMBO:CONTROL_L}"
 const uint16_t PROGMEM doom_typist_return_to_auto_mode_combo[] = {
@@ -435,7 +431,6 @@ combo_t key_combos[COMBO_COUNT] = {
     // NOTE: Key customisable on the doom UI as "Force Combat Mode".
     [DOOM_TYPIST_FORCE_COMBAT] = COMBO(doom_typist_force_combat_combo, KC_GRAVE),
     [DOOM_TYPIST_FORCE_EXPLORATION] = COMBO(doom_typist_force_exploration_combo, KC_ESCAPE),
-    [DOOM_TYPIST_QUICK_TURN] = COMBO(doom_typist_quick_turn_combo, KC_BACKSLASH),
     // NOTE: Key customisable on the doom UI as "Unlock Game Mode".
     [DOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(doom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
     [DOOM_TYPIST_TOGGLE_RUN] = COMBO(doom_typist_toggle_run_combo, KC_TAB),
@@ -474,7 +469,6 @@ combo_t key_combos[COMBO_COUNT] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool dashing;
-    static bool moving_backward;
 
     switch (keycode) {
     case DASH:
@@ -517,41 +511,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
     case KC_D:
-        if (record->event.pressed) {
-            if (dashing) {
-                SEND_STRING("/db" SS_TAP(X_ENTER));
-                return false;
-            } else {
-                moving_backward = true;
-                return true;
-            }
-        } else {
-            moving_backward = false;
-            return true;
+        if (record->event.pressed && dashing) {
+            SEND_STRING("/db" SS_TAP(X_ENTER));
+            return false;
         }
+        return true;
     case KC_E:
         if (record->event.pressed && dashing) {
             SEND_STRING("/df" SS_TAP(X_ENTER));
             return false;
         }
+        return true;
     case KC_F:
         if (record->event.pressed && dashing) {
             SEND_STRING("/dr" SS_TAP(X_ENTER));
             return false;
         }
-    case KC_QUOTE:
-        // Use Case: Doing a quick turn while moving backward.
-        if (record->event.pressed && moving_backward) {
-            // NOTE: X_BSLS is for Backslash (X_BACKSLASH doesn't compile)
-            SEND_STRING(SS_TAP(X_BSLS));
-            moving_backward = false;
-            return false;
-        }
+        return true;
     case KC_S:
         if (record->event.pressed && dashing) {
             SEND_STRING("/dl" SS_TAP(X_ENTER));
             return false;
         }
+        return true;
     }
     return true;
 };
