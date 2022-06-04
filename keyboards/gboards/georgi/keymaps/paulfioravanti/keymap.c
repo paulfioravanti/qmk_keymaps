@@ -360,8 +360,10 @@ const uint16_t PROGMEM steno_i_left_combo[] = {
 const uint16_t PROGMEM steno_j_combo[] = {
     KC_A, KC_S, KC_D, KC_F, KC_H, COMBO_END
 };
+// NOTE: KC_QUOTE/Z needed so that strafing left and turning left can be done
+// at the same time
 const uint16_t PROGMEM steno_k_combo[] = {
-    KC_S, KC_H, COMBO_END
+    KC_S, KC_H, KC_QUOTE, COMBO_END
 };
 const uint16_t PROGMEM steno_l_combo[] = {
     KC_R, KC_F, KC_H, COMBO_END
@@ -378,8 +380,10 @@ const uint16_t PROGMEM steno_n_combo[] = {
 const uint16_t PROGMEM steno_o_combo[] = {
     KC_DELETE, KC_H, COMBO_END
 };
+// NOTE: KC_QUOTE/-Z needed so that moving forward and turning left can be done
+// at the same time
 const uint16_t PROGMEM steno_p_combo[] = {
-    KC_E, KC_H, COMBO_END
+    KC_E, KC_H, KC_QUOTE, COMBO_END
 };
 const uint16_t PROGMEM steno_plus_combo[] = {
     KC_E, KC_R, KC_F, KC_H, KC_SPACE, KC_SEMICOLON, COMBO_END
@@ -387,8 +391,10 @@ const uint16_t PROGMEM steno_plus_combo[] = {
 const uint16_t PROGMEM steno_q_combo[] = {
     KC_S, KC_D, KC_H, COMBO_END
 };
+// NOTE: KC_QUOTE/-Z needed so that strafing right and turning left can be done
+// at the same time
 const uint16_t PROGMEM steno_r_combo[] = {
-    KC_F, KC_H, COMBO_END
+    KC_F, KC_H, KC_QUOTE, COMBO_END
 };
 const uint16_t PROGMEM steno_s_combo[] = {
     KC_A, KC_H, COMBO_END
@@ -405,8 +411,10 @@ const uint16_t PROGMEM steno_u_left_combo[] = {
 const uint16_t PROGMEM steno_v_combo[] = {
     KC_A, KC_F, KC_H, COMBO_END
 };
+// NOTE: KC_QUOTE/-Z needed so that moving backward and turning left can be done
+// at the same time
 const uint16_t PROGMEM steno_w_combo[] = {
-    KC_D, KC_H, COMBO_END
+    KC_D, KC_H, KC_QUOTE, COMBO_END
 };
 const uint16_t PROGMEM steno_x_combo[] = {
     KC_S, KC_E, KC_H, COMBO_END
