@@ -24,6 +24,11 @@ mode][Georgi Gaming Mode], was the subject of the following blog post:
 
 - _[Flashing Georgi Firmware][]_
 
+Getting the [Georgi][] to play [Doom Typist][Typist.pk3] was the subject of the
+following blog post:
+
+- _[Steno Gaming: Doom Typist][]_
+
 ## Dependencies
 
 In order to create a build environment, I followed the instructions on the
@@ -90,6 +95,7 @@ tools. See Ergodox EZ layout README file for details.
 [Ergodox]: https://ergodox-ez.com/
 [Escape the defaults and Control your keyboard with QMK]: https://www.paulfioravanti.com/blog/escape-defaults-control-keyboard-qmk/
 [Flashing Georgi Firmware]: https://www.paulfioravanti.com/blog/flashing-georgi-firmware/
+[Georgi]: https://www.gboards.ca/product/georgi
 [Georgi Gaming Mode]: http://docs.gboards.ca/docs/Unboxing-Georgi/#entering-qmk-gaming-mode
 [Google Sheets]: https://www.google.com/sheets/about/
 [`GS_TIMESTAMP`]: https://github.com/paulfioravanti/qmk_keymaps/blob/master/keyboards/ergodox_ez/keymaps/paulfioravanti/user/process_record_user.c#L104
@@ -106,3 +112,5 @@ tools. See Ergodox EZ layout README file for details.
 [rsync]: http://en.wikipedia.org/wiki/Rsync
 [Setting Up Your QMK Environment]: https://docs.qmk.fm/#/newbs_getting_started
 [steno-firmware]: https://github.com/JoshuaGrams/steno-firmware
+[Steno Gaming: Doom Typist]: https://www.paulfioravanti.com/blog/steno-gaming-doom-typist/
+[Typist.pk3]: https://github.com/mmaulwurff/typist.pk3
