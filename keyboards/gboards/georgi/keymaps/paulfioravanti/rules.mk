@@ -19,7 +19,12 @@ CONSOLE_ENABLE = no
 DEBUG_MATRIX_SCAN_RATE = no
 DEBUG_MATRIX = no
 ONLY_QWERTY = no
+
+# Enable multi-key combo chords
 COMBO_ENABLE = yes
+
+# Enable HID
+RAW_ENABLE = yes
 
 # A bunch of stuff that you shouldn't touch unless you
 # know what you're doing.

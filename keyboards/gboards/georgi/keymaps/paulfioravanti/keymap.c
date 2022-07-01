@@ -13,6 +13,7 @@
 #include QMK_KEYBOARD_H
 #include "sten.h"
 #include "keymap_steno.h"
+#include "raw_hid.h"
 
 // Proper Layers
 #define FUNCT   (LSD | LK | LP | LH)
@@ -23,6 +24,10 @@
 #define STENO_LAYER   0
 #define GAMING        1
 #define GAMING_2      2
+
+// HID Commands
+#define SWITCH_TO_GAMING 1
+#define SWITCH_TO_STENO  2
 
 /* Keyboard Layout
  * ,---------------------------------.    ,------------------------------.
@@ -225,8 +230,8 @@ enum custom_keycodes {
 };
 
 // Combos
-// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md
-// https://docs.qmk.fm/#/feature_combo?id=combos
+// REF: https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md
+// REF: https://docs.qmk.fm/#/feature_combo?id=combos
 enum combos {
   ASI_ESCAPE,
   FJ_ENTER,
@@ -544,6 +549,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
     return true;
+};
+
+// USB Human Interface Device (HID) communication
+// REF: https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rawhid.md
+// REF: https://docs.qmk.fm/#/feature_rawhid
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+    // data is the packet received from host.
+    // We only care about the integer values in the first array element.
+    switch (*data) {
+      case SWITCH_TO_GAMING:
+        layer_on(GAMING);
+        break;
+      case SWITCH_TO_STENO:
+        layer_off(GAMING);
+        break;
+    }
 };
 
 // "Layers"
