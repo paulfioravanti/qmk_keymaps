@@ -52,8 +52,8 @@ git clone git@github.com:paulfioravanti/qmk_keymaps.git
 
 ### Copy Keymaps
 
-Use [rsync][] to merge the `keyboards` directory into the QMK Firmware
-repository's `keyboards` directory:
+Use [rsync][] to merge this repository's `keyboards` directory into the QMK
+Firmware repository's `keyboards` directory:
 
 ```sh
 rsync --recursive qmk_keymaps/keyboards/ qmk_firmware/keyboards/
