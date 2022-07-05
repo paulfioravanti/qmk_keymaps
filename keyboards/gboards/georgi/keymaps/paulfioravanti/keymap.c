@@ -26,8 +26,9 @@
 #define GAMING_2      2
 
 // HID Commands
-#define SWITCH_TO_GAMING 1
-#define SWITCH_TO_STENO  2
+#define TOGGLE_GAMING 1
+#define SWITCH_TO_GAMING 2
+#define SWITCH_TO_STENO  3
 
 /* Keyboard Layout
  * ,---------------------------------.    ,------------------------------.
@@ -558,6 +559,13 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
     // data is the packet received from host.
     // We only care about the integer values in the first array element.
     switch (*data) {
+      case TOGGLE_GAMING:
+        if (biton32(layer_state) == GAMING) {
+          layer_off(GAMING);
+        } else {
+          layer_on(GAMING);
+        }
+        break;
       case SWITCH_TO_GAMING:
         layer_on(GAMING);
         break;
