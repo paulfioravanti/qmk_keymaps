@@ -488,6 +488,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case DASH:
         if (record->event.pressed) {
+            SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_BACKSPACE) SS_UP(X_LCTRL));
             dashing = true;
         } else {
             dashing = false;
@@ -495,7 +496,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_BACKWARD:
         if (record->event.pressed) {
-            SEND_STRING("/db" SS_TAP(X_ENTER));
+            SEND_STRING(
+              SS_DOWN(X_LCTRL)
+              SS_TAP(X_BACKSPACE)
+              SS_UP(X_LCTRL)
+              "/db"
+              SS_TAP(X_ENTER)
+            );
             dashing = true;
         } else {
             dashing = false;
@@ -503,7 +510,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_FORWARD:
         if (record->event.pressed) {
-            SEND_STRING("/df" SS_TAP(X_ENTER));
+            SEND_STRING(
+              SS_DOWN(X_LCTRL)
+              SS_TAP(X_BACKSPACE)
+              SS_UP(X_LCTRL)
+              "/df"
+              SS_TAP(X_ENTER)
+            );
             dashing = true;
         } else {
             dashing = false;
@@ -511,7 +524,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_LEFT:
         if (record->event.pressed) {
-            SEND_STRING("/dl" SS_TAP(X_ENTER));
+            SEND_STRING(
+              SS_DOWN(X_LCTRL)
+              SS_TAP(X_BACKSPACE)
+              SS_UP(X_LCTRL)
+              "/dl"
+              SS_TAP(X_ENTER)
+            );
             dashing = true;
         } else {
             dashing = false;
@@ -519,7 +538,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_RIGHT:
         if (record->event.pressed) {
-            SEND_STRING("/dr" SS_TAP(X_ENTER));
+            SEND_STRING(
+              SS_DOWN(X_LCTRL)
+              SS_TAP(X_BACKSPACE)
+              SS_UP(X_LCTRL)
+              "/dr"
+              SS_TAP(X_ENTER)
+            );
             dashing = true;
         } else {
             dashing = false;
