@@ -15,8 +15,9 @@ of the following:
   functionality to allow external devices, like a pedal, to perform actions
   internal to the keyboard, like switching keyboard layers
 
-Since I have also made a minor change to the `sten.c` file of Georgi's firmware,
-it's included here.
+Since I have also made some minor changes to the `sten.c` file of Georgi's
+firmware, it's included here. See the `CUSTOMISATION BEGIN` and
+`CUSTOMISATION END` comments for specifics.
 
 ## Dependencies
 
