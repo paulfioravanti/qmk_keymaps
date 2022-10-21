@@ -50,6 +50,26 @@ git clone git@github.com:qmk/qmk_firmware.git
 git clone git@github.com:paulfioravanti/qmk_keymaps.git
 ```
 
+### Limitations
+
+QMK's stenography functionality went through a significant refactor in [this
+commit][QMK steno refactor commit], making some of the steno firmware overrides
+in this repo incompatible with the current QMK `master` branch.
+
+Therefore, these customisations will currently only work on a version of QMK
+created before that refactor occurred. So, until those fixes are made, checkout
+[this commit][QMK steno refactor commit - 1] of QMK before copying over the
+keymaps:
+
+```sh
+cd qmk_firmware
+git checkout 2239527871deef1253ebe885df167726a100f971
+git switch -c pre-process-steno-refactor
+cd ..
+```
+
+Hopefully, this section can be removed at some point.
+
 ### Copy Keymaps
 
 Use [rsync][] to merge this repository's `keyboards` directory into the QMK
@@ -108,6 +128,8 @@ tools. See Ergodox EZ layout README file for details.
 [QMK documentation]: https://docs.qmk.fm/#/
 [QMK Firmware]: https://qmk.fm/
 [QMK Keycodes]: https://docs.qmk.fm/#/keycodes
+[QMK steno refactor commit]: https://github.com/qmk/qmk_firmware/commit/7060cb7b267e78ba693a77a3346c77c2d4209b01
+[QMK steno refactor commit - 1]: https://github.com/qmk/qmk_firmware/commit/2239527871deef1253ebe885df167726a100f971
 [QMK Toolbox]: https://github.com/qmk/qmk_toolbox
 [rsync]: http://en.wikipedia.org/wiki/Rsync
 [Setting Up Your QMK Environment]: https://docs.qmk.fm/#/newbs_getting_started
