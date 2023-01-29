@@ -18,22 +18,34 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
           // before steno mode is selected.
           SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_BACKSPACE) SS_UP(X_LCTRL));
           layer_off(GAMING);
+          data[1] = SWITCH_TO_STENO;
+          raw_hid_send(data, length);
         } else {
           layer_on(GAMING);
+          data[1] = SWITCH_TO_GAMING;
+          raw_hid_send(data, length);
         }
         break;
       case TOGGLE_GAMING:
         if (biton32(layer_state) == GAMING) {
           layer_off(GAMING);
+          data[1] = SWITCH_TO_STENO;
+          raw_hid_send(data, length);
         } else {
           layer_on(GAMING);
+          data[1] = SWITCH_TO_GAMING;
+          raw_hid_send(data, length);
         }
         break;
       case SWITCH_TO_GAMING:
         layer_on(GAMING);
+        data[1] = SWITCH_TO_GAMING;
+        raw_hid_send(data, length);
         break;
       case SWITCH_TO_STENO:
         layer_off(GAMING);
+        data[1] = SWITCH_TO_STENO;
+        raw_hid_send(data, length);
         break;
     }
 };
