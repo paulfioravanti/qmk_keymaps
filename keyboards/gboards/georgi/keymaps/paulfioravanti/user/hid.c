@@ -23,7 +23,6 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
           layer_on(GAMING);
           data[1] = SWITCH_TO_GAMING;
         }
-        raw_hid_send(data, length);
         break;
       case TOGGLE_GAMING:
         if (biton32(layer_state) == GAMING) {
@@ -33,17 +32,16 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
           layer_on(GAMING);
           data[1] = SWITCH_TO_GAMING;
         }
-        raw_hid_send(data, length);
         break;
       case SWITCH_TO_GAMING:
         layer_on(GAMING);
         data[1] = SWITCH_TO_GAMING;
-        raw_hid_send(data, length);
         break;
       case SWITCH_TO_STENO:
         layer_off(GAMING);
         data[1] = SWITCH_TO_STENO;
-        raw_hid_send(data, length);
         break;
     }
+
+    raw_hid_send(data, length);
 };
