@@ -19,6 +19,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               "/db"
               SS_TAP(X_ENTER)
             );
+            // Log Dash Backward using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_W)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             dashing = true;
         } else {
             dashing = false;
@@ -32,6 +38,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               SS_UP(X_LCTRL)
               "/df"
               SS_TAP(X_ENTER)
+            );
+            // Log Dash Forward using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_P)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
             );
             dashing = true;
         } else {
@@ -47,6 +59,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               "/dl"
               SS_TAP(X_ENTER)
             );
+            // Log Dash Left using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_K)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             dashing = true;
         } else {
             dashing = false;
@@ -61,6 +79,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               "/dr"
               SS_TAP(X_ENTER)
             );
+            // Log Dash Right using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_R)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             dashing = true;
         } else {
             dashing = false;
@@ -69,24 +93,48 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_D:
         if (record->event.pressed && dashing) {
             SEND_STRING("/db" SS_TAP(X_ENTER));
+            // Log Dash Backward using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_W)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             return false;
         }
         return true;
     case KC_E:
         if (record->event.pressed && dashing) {
             SEND_STRING("/df" SS_TAP(X_ENTER));
+            // Log Dash Forward using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_P)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             return false;
         }
         return true;
     case KC_F:
         if (record->event.pressed && dashing) {
             SEND_STRING("/dr" SS_TAP(X_ENTER));
+            // Log Dash Right using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_R)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             return false;
         }
         return true;
     case KC_S:
         if (record->event.pressed && dashing) {
             SEND_STRING("/dl" SS_TAP(X_ENTER));
+            // Log Dash Left using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_K)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
             return false;
         }
         return true;
