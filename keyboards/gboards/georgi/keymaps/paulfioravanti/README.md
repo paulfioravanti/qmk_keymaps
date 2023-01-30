@@ -14,6 +14,9 @@ of the following:
   communications. Specifically, the intention is to use [QMK][]'s [Raw HID][]
   functionality to allow external devices, like a pedal, to perform actions
   internal to the keyboard, like switching keyboard layers
+- Use complex hotkey combinations during [Typist][] dash commands that call
+  [Alfred][] workflows which log out to [Tapey Tape][]. See [my Dotfiles][] for
+  the workflows.
 
 Since I have also made some minor changes to the `sten.c` file of Georgi's
 firmware, it's included here. See the `CUSTOMISATION BEGIN` and
@@ -52,6 +55,7 @@ _[Flashing Georgi Firmware][]_ blog post.
 
 Then, open up QMK Toolbox and follow their instructions.
 
+[Alfred]: https://www.alfredapp.com/
 [default Georgi QMK layout]: https://github.com/qmk/qmk_firmware/tree/master/keyboards/gboards/georgi
 [Ergodox EZ keymap]: ../../../../ergodox_ez/keymaps/paulfioravanti/keymap.c
 [Flashing Georgi Firmware]: https://www.paulfioravanti.com/blog/flashing-georgi-firmware/
@@ -60,6 +64,9 @@ Then, open up QMK Toolbox and follow their instructions.
 [Human Interface Device]: https://en.wikipedia.org/wiki/USB_human_interface_device_class
 [key names]: https://github.com/qmk/qmk_firmware/blob/master/docs/keycodes.md
 [Georgi docs]: http://docs.gboards.ca/docs/Georgi-Firmwares/
+[my Dotfiles]: https://github.com/paulfioravanti/dotfiles/tree/master/macos/alfred
 [Plover]: https://www.openstenoproject.org/plover/
 [QMK]: https://qmk.fm/
 [Raw HID]: https://docs.qmk.fm/#/feature_rawhid
+[Tapey Tape]: https://github.com/rabbitgrowth/plover-tapey-tape
+[Typist]: https://github.com/mmaulwurff/typist.pk3
