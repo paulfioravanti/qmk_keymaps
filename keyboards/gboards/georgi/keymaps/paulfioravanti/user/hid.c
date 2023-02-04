@@ -3,6 +3,7 @@
 #define TOGGLE_GAMING           2
 #define SWITCH_TO_GAMING        3
 #define SWITCH_TO_STENO         4
+#define NO_ACTION_TAKEN         9
 
 // USB Human Interface Device (HID) communication
 // REF: https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rawhid.md
@@ -10,7 +11,7 @@
 void raw_hid_receive(uint8_t *data, uint8_t length) {
     // data is the packet received from host.
     // We only care about the integer values in the first array element.
-    switch (*data) {
+    switch (data[0]) {
       case TOGGLE_DOOM_TYPIST_MODE:
         if (biton32(layer_state) == GAMING) {
           // Doom Typist (Ctrl-Backspace):
@@ -41,7 +42,9 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         layer_off(GAMING);
         data[1] = SWITCH_TO_STENO;
         break;
+      default:
+        data[1] = NO_ACTION_TAKEN;
+        break;
     }
-
     raw_hid_send(data, length);
 };
