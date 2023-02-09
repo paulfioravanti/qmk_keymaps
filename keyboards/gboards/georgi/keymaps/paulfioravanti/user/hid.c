@@ -1,9 +1,11 @@
 // HID Commands
-#define TOGGLE_DOOM_TYPIST_MODE 1
-#define TOGGLE_GAMING           2
-#define SWITCH_TO_GAMING        3
-#define SWITCH_TO_STENO         4
-#define NO_ACTION_TAKEN         9
+enum hid_responses {
+  TOGGLE_DOOM_TYPIST_MODE = 0x1,
+  TOGGLE_GAMING = 0x2,
+  SWITCH_TO_GAMING = 0x3,
+  SWITCH_TO_STENO = 0x4,
+  NO_ACTION_TAKEN = 0x9
+};
 
 // USB Human Interface Device (HID) communication
 // REF: https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rawhid.md
