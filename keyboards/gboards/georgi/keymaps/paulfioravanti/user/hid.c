@@ -16,12 +16,12 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
     switch (data[0]) {
       case TOGGLE_DOOM_TYPIST_MODE:
         if (biton32(layer_state) == GAMING) {
+          layer_off(GAMING);
+          data[1] = SWITCH_TO_STENO;
           // Doom Typist (Ctrl-Backspace):
           // Erase any text that may have been entered inadvertently just
           // before steno mode is selected.
           SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_BACKSPACE) SS_UP(X_LCTRL));
-          layer_off(GAMING);
-          data[1] = SWITCH_TO_STENO;
         } else {
           layer_on(GAMING);
           data[1] = SWITCH_TO_GAMING;
