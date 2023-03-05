@@ -30,7 +30,8 @@ enum custom_keycodes {
   DASH_BACKWARD,
   DASH_FORWARD,
   DASH_LEFT,
-  DASH_RIGHT
+  DASH_RIGHT,
+  STENO_MODE
 };
 
 #include "./user/combos.c"

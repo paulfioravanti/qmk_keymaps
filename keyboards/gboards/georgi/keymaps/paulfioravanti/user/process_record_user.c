@@ -146,6 +146,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         }
         return true;
+    case STENO_MODE:
+        if (record->event.pressed) {
+            layer_off(GAMING);
+            // Log Steno Mode using Alfred workflow
+            SEND_STRING(
+              SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+              SS_TAP(X_S)
+              SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+            );
+            return false;
+        }
+        return true;
     }
     return true;
 };

@@ -97,6 +97,12 @@ bool send_steno_chord_user(steno_mode_t mode, uint8_t chord[6]) {
   // CUSTOMISATION BEGIN
 	/* Original cChord == (PWR | FN | ST4 | ST3) */
 	if (cChord == (PWR | ST4) && keymapsCount > 1) {
+    // Log Gaming Mode using Alfred workflow
+    SEND_STRING(
+      SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_LGUI)
+      SS_TAP(X_G)
+      SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LGUI)
+    );
   // CUSTOMISATION END
 #ifndef NO_DEBUG
 		uprintf("Switching to QMK\n");
