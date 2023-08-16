@@ -67,37 +67,39 @@ const uint16_t PROGMEM goto_steno_layer_combo[] = {
 const uint16_t PROGMEM doom_typist_clear_all_combo[] = {
     KC_S, KC_R, KC_F, KC_BACKSPACE, KC_SPACE, KC_O, COMBO_END
 };
+// Mirrors "-RBGS" chord
 const uint16_t PROGMEM doom_typist_dash_combo[] = {
     KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "W-RBGS": "{^/db}{#RETURN}"
+// Mirrors "W-RBGS": "{#CONTROL(BACKSPACE)}{^/db}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_backward_combo[] = {
     KC_D, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "P-RBGS": "{^/df}{#RETURN}"
+// Mirrors "P-RBGS": "{#CONTROL(BACKSPACE)}{^/df}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_forward_combo[] = {
     KC_E, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "K-RBGS": "{^/dl}{#RETURN}"
+// Mirrors "K-RBGS": "{#CONTROL(BACKSPACE)}{^/dl}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_left_combo[] = {
     KC_S, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "R-RBGS": "{^/dr}{#RETURN}"
+// Mirrors "R-RBGS": "{#CONTROL(BACKSPACE)}{^/dr}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_right_combo[] = {
     KC_F, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "KPWA*T": "{#GRAVE}",
+// Mirrors "KPWA*T": "{#COMMA}",
 const uint16_t PROGMEM doom_typist_force_combat_combo[] = {
     KC_S, KC_E, KC_D, KC_BACKSPACE, KC_H, KC_P, COMBO_END
 };
-// Mirrors "SPHRO*R": "{#ESCAPE}"
+// Mirrors "SPHRO*R": "{#GRAVE}"
 const uint16_t PROGMEM doom_typist_force_exploration_combo[] = {
     KC_A, KC_E, KC_R, KC_F, KC_DELETE, KC_H, KC_J, COMBO_END
 };
-// Mirrors "A*UPL": "{#CONTROL}"
+// Mirrors "A*UPLD": "{#CONTROL}"
 const uint16_t PROGMEM doom_typist_return_to_auto_mode_combo[] = {
-    KC_BACKSPACE, KC_H, KC_SPACE, KC_I, KC_O, COMBO_END
+    KC_BACKSPACE, KC_H, KC_SPACE, KC_I, KC_O, KC_ESCAPE, COMBO_END
 };
+// Mirrors "R*UPB": "{#TAB}"
 const uint16_t PROGMEM doom_typist_toggle_run_combo[] = {
     KC_U, KC_I, KC_O, KC_P, COMBO_END
 };
@@ -157,8 +159,8 @@ const uint16_t PROGMEM steno_n_combo[] = {
 const uint16_t PROGMEM steno_o_combo[] = {
     KC_DELETE, KC_H, COMBO_END
 };
-// NOTE: KC_QUOTE/-Z needed so that moving forward and turning left can be done
-// at the same time
+// NOTE: KC_QUOTE (steno -Z) needed so that moving forward and turning left can
+// be done at the same time in Doom Typist
 const uint16_t PROGMEM steno_p_combo[] = {
     KC_E, KC_H, KC_QUOTE, COMBO_END
 };
@@ -168,8 +170,8 @@ const uint16_t PROGMEM steno_plus_combo[] = {
 const uint16_t PROGMEM steno_q_combo[] = {
     KC_S, KC_D, KC_H, COMBO_END
 };
-// NOTE: KC_QUOTE/-Z needed so that strafing right and turning left can be done
-// at the same time
+// NOTE: KC_QUOTE (steno -Z) needed so that strafing right and turning left can
+// be done at the same time in Doom Typist
 const uint16_t PROGMEM steno_r_combo[] = {
     KC_F, KC_H, KC_QUOTE, COMBO_END
 };
@@ -214,8 +216,8 @@ combo_t key_combos[COMBO_COUNT] = {
     [DOOM_TYPIST_DASH_LEFT] = COMBO(doom_typist_dash_left_combo, DASH_LEFT),
     [DOOM_TYPIST_DASH_RIGHT] = COMBO(doom_typist_dash_right_combo, DASH_RIGHT),
     // NOTE: Key customisable on the doom UI as "Force Combat Mode".
-    [DOOM_TYPIST_FORCE_COMBAT] = COMBO(doom_typist_force_combat_combo, KC_GRAVE),
-    [DOOM_TYPIST_FORCE_EXPLORATION] = COMBO(doom_typist_force_exploration_combo, KC_ESCAPE),
+    [DOOM_TYPIST_FORCE_COMBAT] = COMBO(doom_typist_force_combat_combo, KC_COMMA),
+    [DOOM_TYPIST_FORCE_EXPLORATION] = COMBO(doom_typist_force_exploration_combo, KC_GRAVE),
     // NOTE: Key customisable on the doom UI as "Unlock Game Mode".
     [DOOM_TYPIST_RETURN_TO_AUTO_MODE] = COMBO(doom_typist_return_to_auto_mode_combo, KC_LEFT_CTRL),
     [DOOM_TYPIST_TOGGLE_RUN] = COMBO(doom_typist_toggle_run_combo, KC_TAB),
