@@ -48,7 +48,10 @@ enum combos {
   STENO_Z
 };
 
-// Mirrors "SK-P": "{:KEY_COMBO:ESCAPE}{MODE:RESET}"
+// NOTE: Gaming chords come from this steno dictionary:
+// https://github.com/paulfioravanti/steno-dictionaries/blob/main/dictionaries/gaming.md
+
+// Mirrors "SK-P": "{#ESCAPE}{MODE:RESET}"
 const uint16_t PROGMEM asi_escape_combo[] = {
     KC_A, KC_S, KC_I, COMBO_END
 };
@@ -60,38 +63,38 @@ const uint16_t PROGMEM fj_enter_combo[] = {
 const uint16_t PROGMEM goto_steno_layer_combo[] = {
     KC_LEFT_CTRL, KC_H, COMBO_END
 };
-// Mirrors "KHRAUL": "{:KEY_COMBO:CONTROL_L(BACKSPACE)}"
+// Mirrors "KHRAUL": "{#CONTROL(BACKSPACE)}"
 const uint16_t PROGMEM doom_typist_clear_all_combo[] = {
     KC_S, KC_R, KC_F, KC_BACKSPACE, KC_SPACE, KC_O, COMBO_END
 };
 const uint16_t PROGMEM doom_typist_dash_combo[] = {
     KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "W-RBGS": "{:ATTACH:/db}{:KEY_COMBO:RETURN}"
+// Mirrors "W-RBGS": "{^/db}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_backward_combo[] = {
     KC_D, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "P-RBGS": "{:ATTACH:/df}{:KEY_COMBO:RETURN}"
+// Mirrors "P-RBGS": "{^/df}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_forward_combo[] = {
     KC_E, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "K-RBGS": "{:ATTACH:/dl}{:KEY_COMBO:RETURN}"
+// Mirrors "K-RBGS": "{^/dl}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_left_combo[] = {
     KC_S, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "R-RBGS": "{:ATTACH:/dr}{:KEY_COMBO:RETURN}"
+// Mirrors "R-RBGS": "{^/dr}{#RETURN}"
 const uint16_t PROGMEM doom_typist_dash_right_combo[] = {
     KC_F, KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END
 };
-// Mirrors "KPWA*T": "{:KEY_COMBO:GRAVE}",
+// Mirrors "KPWA*T": "{#GRAVE}",
 const uint16_t PROGMEM doom_typist_force_combat_combo[] = {
     KC_S, KC_E, KC_D, KC_BACKSPACE, KC_H, KC_P, COMBO_END
 };
-// Mirrors "SPHRO*R": "{:KEY_COMBO:ESCAPE}"
+// Mirrors "SPHRO*R": "{#ESCAPE}"
 const uint16_t PROGMEM doom_typist_force_exploration_combo[] = {
     KC_A, KC_E, KC_R, KC_F, KC_DELETE, KC_H, KC_J, COMBO_END
 };
-// Mirrors "A*UPL": "{:KEY_COMBO:CONTROL_L}"
+// Mirrors "A*UPL": "{#CONTROL}"
 const uint16_t PROGMEM doom_typist_return_to_auto_mode_combo[] = {
     KC_BACKSPACE, KC_H, KC_SPACE, KC_I, KC_O, COMBO_END
 };

@@ -1,6 +1,8 @@
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool dashing;
 
+    // NOTE: Gaming chords come from this steno dictionary:
+    // https://github.com/paulfioravanti/steno-dictionaries/blob/main/dictionaries/gaming.md
     switch (keycode) {
     case DASH:
         if (record->event.pressed) {
@@ -12,7 +14,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_BACKWARD:
         if (record->event.pressed) {
-            // Mirrors "W-RBGS": "{:ATTACH:/db}{:KEY_COMBO:RETURN}"
+            // Mirrors "W-RBGS": "{#CONTROL(BACKSPACE)}{^/db}{#RETURN}"
             SEND_STRING(
               SS_DOWN(X_LCTRL)
               SS_TAP(X_BACKSPACE)
@@ -33,7 +35,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_FORWARD:
         if (record->event.pressed) {
-            // Mirrors "P-RBGS": "{:ATTACH:/df}{:KEY_COMBO:RETURN}"
+            // Mirrors "P-RBGS": "{#CONTROL(BACKSPACE)}{^/df}{#RETURN}"
             SEND_STRING(
               SS_DOWN(X_LCTRL)
               SS_TAP(X_BACKSPACE)
@@ -54,7 +56,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_LEFT:
         if (record->event.pressed) {
-            // Mirrors "K-RBGS": "{:ATTACH:/dl}{:KEY_COMBO:RETURN}"
+            // Mirrors "K-RBGS": "{#CONTROL(BACKSPACE)}{^/dl}{#RETURN}"
             SEND_STRING(
               SS_DOWN(X_LCTRL)
               SS_TAP(X_BACKSPACE)
@@ -75,7 +77,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case DASH_RIGHT:
         if (record->event.pressed) {
-            // Mirrors "R-RBGS": "{:ATTACH:/dr}{:KEY_COMBO:RETURN}"
+            // Mirrors "R-RBGS": "{#CONTROL(BACKSPACE)}{^/dr}{#RETURN}"
             SEND_STRING(
               SS_DOWN(X_LCTRL)
               SS_TAP(X_BACKSPACE)
@@ -96,7 +98,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case KC_D:
         if (record->event.pressed && dashing) {
-            // Mirrors "W-RBGS": "{:ATTACH:/db}{:KEY_COMBO:RETURN}"
+            // Mirrors "W-RBGS": "{#CONTROL(BACKSPACE)}{^/db}{#RETURN}"
+            // (`dashing` means #CONTROL(BACKSPACE) has been pressed)
             SEND_STRING("/db" SS_TAP(X_ENTER));
             // Log Dash Backward using Alfred workflow
             SEND_STRING(
@@ -109,7 +112,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     case KC_E:
         if (record->event.pressed && dashing) {
-            // Mirrors "P-RBGS": "{:ATTACH:/df}{:KEY_COMBO:RETURN}"
+            // Mirrors "P-RBGS": "{#CONTROL(BACKSPACE)}{^/df}{#RETURN}"
+            // (`dashing` means #CONTROL(BACKSPACE) has been pressed)
             SEND_STRING("/df" SS_TAP(X_ENTER));
             // Log Dash Forward using Alfred workflow
             SEND_STRING(
@@ -122,7 +126,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     case KC_F:
         if (record->event.pressed && dashing) {
-            // Mirrors "R-RBGS": "{:ATTACH:/dr}{:KEY_COMBO:RETURN}"
+            // Mirrors "R-RBGS": "{#CONTROL(BACKSPACE)}{^/dr}{#RETURN}"
+            // (`dashing` means #CONTROL(BACKSPACE) has been pressed)
             SEND_STRING("/dr" SS_TAP(X_ENTER));
             // Log Dash Right using Alfred workflow
             SEND_STRING(
@@ -135,7 +140,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     case KC_S:
         if (record->event.pressed && dashing) {
-            // Mirrors "K-RBGS": "{:ATTACH:/dl}{:KEY_COMBO:RETURN}"
+            // Mirrors "K-RBGS": "{#CONTROL(BACKSPACE)}{^/dl}{#RETURN}"
+            // (`dashing` means #CONTROL(BACKSPACE) has been pressed)
             SEND_STRING("/dl" SS_TAP(X_ENTER));
             // Log Dash Left using Alfred workflow
             SEND_STRING(
