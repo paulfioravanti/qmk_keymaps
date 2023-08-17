@@ -75,6 +75,8 @@ flowchart BT
   TapeLogFile["Tape Log\n(tapey_tape.txt)"]
   TapeFilterScript["Tape Filter Script"]
 
+  classDef current fill:#ffb3b3, stroke:#333, stroke-width:4px, color:black
+
   subgraph Alfred
     direction TB
     StenoTapeCustomEntriesWorkflow
@@ -95,10 +97,12 @@ flowchart BT
   subgraph QMKFirmware["QMK Firmware"]
     direction TB
     subgraph Georgi
-      GeorgiHID
-      GeorgiProcessRecordUser
+      GeorgiHID:::current
+      GeorgiProcessRecordUser:::current
     end
   end
+  class QMKFirmware current
+  class Georgi current
 
   subgraph Plover
     direction TB
