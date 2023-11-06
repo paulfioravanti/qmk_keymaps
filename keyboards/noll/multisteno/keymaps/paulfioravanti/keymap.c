@@ -2,7 +2,7 @@
 #include "raw_hid.h"
 #include QMK_KEYBOARD_H
 
-enum layers{
+enum layers {
   STENO,
   QWERTY,
   QWERTY_CAPS,
@@ -47,6 +47,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,         KC_PERC, KC_CIRC, KC_LBRC,    KC_RBRC,      KC_GRAVE,  /* | */ KC_MINS,  KC_AMPR,  KC_EQUAL,   KC_COMM,   KC_DOT,          KC_RSFT,
                                        _______,    _______,      _______,   /* | */ _______, _______, _______
   )
+};
+
+void keyboard_post_init_user(void) {
+  // https://github.com/qmk/qmk_firmware/blob/master/docs/feature_stenography.md#plover-with-steno-protocol
+  steno_set_mode(STENO_MODE_GEMINI);
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
