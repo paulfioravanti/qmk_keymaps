@@ -58,10 +58,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     // or uint8_t layer = get_highest_layer(state);
     switch (get_highest_layer(state)) {
         case (STENO):
-          //green LED on
-          palSetPad(GPIOA, 1);
           // red LED off
           palClearPad(GPIOA, 0);
+          // green LED off
+          palClearPad(GPIOA, 1);
           break;
         case (QWERTY):
           combo_enable();
@@ -73,22 +73,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case (QWERTY_CAPS):
           // same as QWERTY
           combo_enable();
-          // red LED on
-          palSetPad(GPIOA,0);
-          // green LED off
-          palClearPad(GPIOA,1);
+          // red LED off
+          palClearPad(GPIOA, 0);
+          // green LED on
+          palSetPad(GPIOA, 1);
           break;
         case (SYMBOL):
           // both LEDs on for Symbol
           combo_disable();
-          palSetPad(GPIOA, 1);
           palSetPad(GPIOA, 0);
+          palSetPad(GPIOA, 1);
           break;
         default:
           // shouldn't happen but just in case
           //combo_disable();
-          palClearPad(GPIOA, 1);
           palClearPad(GPIOA, 0);
+          palClearPad(GPIOA, 1);
           break;
     }
 
